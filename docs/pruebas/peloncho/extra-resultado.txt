@@ -1,0 +1,6 @@
+IBERIA 3254, autorizado a despegar pista 23, EC-DOG mantenga posición
+   [true,true,"mantenga_posicion",["mantenga_posicion"],{},"Mantengo posición. EC-DOG.","Colación sugerida (AESA / SERA.8015 e). Verifique con la escucha directa."]
+IBERIA 3254 autorizado a despegar pista 23, EC-DOG
+   [false,false,null,[],{},null,"La instrucción va para otra aeronave; no queda nada dirigido a EC-DOG con seguridad."]
+BKN035 QNH 1024, EC-DOG pista en servicio 23
+   [true,true,"pista_en_servicio",["pista_en_servicio"],{"qnh":1024,"pista":"23","nubes":"BKN035"},"QNH 1024, pista 23. EC-DOG.","Colación sugerida (AESA / SERA.8015 e). Verifique con la escucha directa. Al panel, sin colacionar: nubes."] []

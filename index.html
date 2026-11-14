@@ -1,0 +1,2178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; connect-src 'none'; img-src 'self' data:; media-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Colación ATC">
+<meta name="application-name" content="Colación ATC">
+<meta name="format-detection" content="telephone=no">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#05070a">
+<meta name="description" content="Ayuda de entrenamiento para colacionar instrucciones de torre (EC-DOG). No certificada.">
+<title>Colación ATC — ayuda de entrenamiento</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="192x192" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADAAgMAAAAvsoSUAAAACVBMVEULEiD/wjP19/rQAOKsAAAAZUlEQVR42u3YMQqAMAxA0Tq4eCqP4JL7OfeULjqIVsSh0Pr+UAj07SEpSZIqFREBAL8HY0QsB9gHAACAm4bTn8swAwAAAAAAVAVWOAAAPgHnIqB/oHbKj3UK9Kop57X8tgEkddAGNyKaUDMNE5IAAAAASUVORK5CYII=">
+<link rel="apple-touch-icon" sizes="180x180" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0AgMAAABAo+6hAAAACVBMVEULEiD/wjP19/rQAOKsAAAAeElEQVR42u3XsQ2DQBBE0QHpEnI34SoogYDph1IIranSiYWEZIvoAMP/8dt8ViIiukXF9oBGH6KL7f6jm80bNBp9Jv1Y3Fo3tkc0Go1Go9HVNfsEjT6r5vtH/6Om+nX53XwZTV9qk5fUJZOURGqTWXom086aiOr1BgllVM0yLFFsAAAAAElFTkSuQmCC">
+<style>
+:root {
+  color-scheme: dark;
+  --fondo: #05070a;
+  --tarjeta: #10151d;
+  --tarjeta-2: #161d28;
+  --borde: #2b3646;
+  --texto: #f4f6f8;
+  --suave: #b8c2ce;
+  --ambar: #ffc233;
+  --ambar-fondo: #221a05;
+  --rojo: #ff7a6e;
+  --rojo-fondo: #2a0f0d;
+  --verde: #5fd99a;
+  --azul: #7cc0ff;
+  --radio: 14px;
+  --barra: 124px;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; background: var(--fondo); }
+body {
+  margin: 0;
+  background: var(--fondo);
+  color: var(--texto);
+  font: 18px/1.45 -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  -webkit-tap-highlight-color: rgba(255, 194, 51, 0.25);
+}
+.app {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: calc(10px + env(safe-area-inset-top)) calc(12px + env(safe-area-inset-right)) calc(var(--barra) + 24px + env(safe-area-inset-bottom)) calc(12px + env(safe-area-inset-left));
+}
+h1 { font-size: 1.05rem; margin: 0; letter-spacing: 0.02em; }
+h2 {
+  margin: 0 0 8px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--suave);
+}
+p { margin: 0; }
+button, input, textarea, select { font: inherit; color: inherit; }
+button {
+  min-height: 52px;
+  min-width: 44px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 2px solid var(--borde);
+  background: var(--tarjeta-2);
+  color: var(--texto);
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+button:active:not(:disabled) { transform: translateY(1px); }
+button:disabled { opacity: 0.45; cursor: not-allowed; }
+button:focus-visible, input:focus-visible, textarea:focus-visible, summary:focus-visible, a:focus-visible {
+  outline: 3px solid var(--azul);
+  outline-offset: 2px;
+}
+a { color: var(--azul); }
+.principal { background: var(--ambar); border-color: var(--ambar); color: #111; }
+.peligro { border-color: var(--rojo); color: #ffd6d1; }
+.oculto { display: none !important; }
+.cabecera {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+.cabecera a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 12px;
+  border: 2px solid var(--borde);
+  border-radius: 10px;
+  color: var(--texto);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+.aviso {
+  border: 2px solid var(--ambar);
+  border-radius: var(--radio);
+  background: var(--ambar-fondo);
+  padding: 10px 12px;
+  margin-bottom: 12px;
+  font-size: 0.86rem;
+  line-height: 1.38;
+  color: #fff3d6;
+}
+.aviso strong { color: var(--ambar); font-weight: 800; }
+.aviso-boton {
+  margin-top: 8px;
+  min-height: 44px;
+  padding: 6px 12px;
+  font-size: 0.9rem;
+  border-color: var(--ambar);
+  background: transparent;
+  color: var(--ambar);
+}
+.aviso.reducido { display: flex; align-items: center; gap: 10px; }
+.aviso.reducido p { flex: 1 1 auto; }
+.aviso.reducido .aviso-boton { margin-top: 0; flex: 0 0 auto; }
+.tarjeta {
+  background: var(--tarjeta);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  padding: 12px;
+  margin-bottom: 12px;
+}
+.tarjeta.compacta { padding: 8px 12px 10px; }
+.nota:empty { display: none; }
+.sin-corte { white-space: nowrap; }
+.separado { margin-top: 8px; }
+.fila { display: flex; gap: 8px; align-items: stretch; flex-wrap: wrap; }
+.fila > * { flex: 1 1 0; }
+label { display: block; font-weight: 700; margin-bottom: 6px; }
+input[type="text"], textarea {
+  width: 100%;
+  min-height: 52px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 2px solid var(--borde);
+  background: #0a0e14;
+  color: var(--texto);
+  font-size: 1.15rem;
+}
+#campo-indicativo {
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  flex: 2 1 0;
+  min-width: 0;
+}
+textarea { resize: vertical; min-height: 96px; line-height: 1.35; }
+.nota { color: var(--suave); font-size: 0.92rem; margin-top: 6px; overflow-wrap: anywhere; }
+.etiqueta {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  padding: 3px 8px;
+  border-radius: 8px;
+  border: 2px solid var(--borde);
+  margin-bottom: 8px;
+}
+.etiqueta.si { border-color: var(--verde); color: var(--verde); }
+.etiqueta.no { border-color: var(--suave); color: var(--suave); }
+.mensaje-texto {
+  font-size: 1.3rem;
+  line-height: 1.3;
+  font-weight: 650;
+  overflow-wrap: anywhere;
+}
+.atenuado { opacity: 0.45; }
+.sugerencia {
+  border: 3px solid var(--ambar);
+  background: var(--ambar-fondo);
+}
+.sugerencia.norec { border-color: var(--rojo); background: var(--rojo-fondo); }
+.sugerencia.contacto { border-color: var(--azul); background: #0b1a2a; }
+.sugerencia.nodirigida { border-color: var(--borde); background: var(--tarjeta); }
+.sugerencia-texto {
+  font-size: 1.78rem;
+  line-height: 1.28;
+  font-weight: 800;
+  overflow-wrap: anywhere;
+}
+.sugerencia.norec .sugerencia-texto { color: #ffe1dc; }
+.rejilla {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+  margin: 0;
+}
+.rejilla > div {
+  background: var(--tarjeta-2);
+  border: 1px solid var(--borde);
+  border-radius: 10px;
+  padding: 6px 8px;
+  min-width: 0;
+}
+.rejilla dt { font-size: 0.74rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--suave); }
+.rejilla dd {
+  margin: 0;
+  font-size: 1.28rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+.rejilla .ancho { grid-column: 1 / -1; }
+.controles button { width: 100%; }
+.controles .grupo { margin-top: 12px; }
+.exportar { display: grid; grid-template-columns: repeat(auto-fit, minmax(96px, 1fr)); }
+.exportar button { font-size: 0.95rem; padding: 8px 6px; }
+.controles fieldset { border: 1px solid var(--borde); border-radius: 12px; padding: 8px 10px 10px; margin: 12px 0 0; }
+.controles legend { font-weight: 700; padding: 0 6px; }
+.parcial { font-style: italic; min-height: 1.3em; }
+.registro-lista { list-style: none; margin: 0; padding: 0; }
+.registro-lista li {
+  border: 1px solid var(--borde);
+  border-radius: 10px;
+  padding: 8px 10px;
+  margin-bottom: 8px;
+  background: var(--tarjeta-2);
+  font-size: 0.95rem;
+  overflow-wrap: anywhere;
+}
+.registro-lista .cab { font-weight: 800; font-size: 0.86rem; color: var(--suave); }
+.registro-lista .txt { font-weight: 650; margin: 2px 0; }
+.registro-lista .sug { color: var(--ambar); font-weight: 700; }
+.ayuda summary { min-height: 44px; display: flex; align-items: center; font-weight: 800; cursor: pointer; }
+.ayuda h3 { font-size: 1rem; margin: 14px 0 4px; }
+.ayuda p, .ayuda li { font-size: 0.95rem; color: #dfe5ec; }
+.ayuda ul { padding-left: 20px; margin: 6px 0; }
+.ayuda .aviso { margin-top: 8px; }
+.barra {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  background: rgba(5, 7, 10, 0.94);
+  border-top: 1px solid var(--borde);
+  padding: 10px calc(12px + env(safe-area-inset-right)) calc(10px + env(safe-area-inset-bottom)) calc(12px + env(safe-area-inset-left));
+}
+.barra .interior { max-width: 760px; margin: 0 auto; }
+.barra-estado {
+  color: var(--suave);
+  font-size: 0.86rem;
+  line-height: 1.3;
+  margin: 0 2px 6px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.barra-estado:empty { display: none; }
+#btn-escuchar { width: 100%; min-height: 60px; font-size: 1.2rem; }
+.escuchando { background: var(--rojo); border-color: var(--rojo); color: #111; }
+@media (min-width: 560px) {
+  .rejilla { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="cabecera">
+    <h1>Colación ATC · entrenamiento</h1>
+    <a href="#ayuda" id="enlace-ayuda">Ayuda</a>
+  </div>
+
+  <section id="aviso" class="aviso" role="note" aria-label="Aviso de seguridad">
+    <p id="aviso-completo"><strong>AYUDA DE ENTRENAMIENTO Y APOYO. NO CERTIFICADA.</strong> Esta aplicación no es un equipo aeronáutico ni un sistema de comunicaciones. El piloto al mando y la escucha directa de la radio prevalecen siempre sobre cualquier texto, dato o sugerencia mostrados aquí. No sustituye la colación ni la disciplina radio. Si hay duda, pida repetición a la torre y ignore la sugerencia. Los datos se quedan en este dispositivo.</p>
+    <p id="aviso-corto" class="oculto"><strong>AYUDA DE ENTRENAMIENTO Y APOYO. NO CERTIFICADA.</strong> El piloto al mando y la escucha directa de la radio prevalecen siempre.</p>
+    <button id="btn-aviso" type="button" class="aviso-boton" aria-controls="aviso-completo" aria-expanded="true">Entendido · reducir aviso</button>
+  </section>
+
+  <section class="tarjeta compacta" aria-labelledby="titulo-indicativo">
+    <h2 id="titulo-indicativo">Indicativo</h2>
+    <div class="fila">
+      <input id="campo-indicativo" type="text" inputmode="text" autocomplete="off" autocapitalize="characters" autocorrect="off" spellcheck="false" maxlength="12" value="EC-DOG" aria-label="Indicativo de la aeronave">
+      <button id="btn-guardar-indicativo" type="button">Guardar</button>
+    </div>
+    <p id="estado-indicativo" class="nota" role="status"></p>
+  </section>
+
+  <section id="bloque-mensaje" class="tarjeta" aria-labelledby="titulo-mensaje">
+    <h2 id="titulo-mensaje">Último mensaje de torre</h2>
+    <span id="mensaje-destino" class="etiqueta no">SIN MENSAJES</span>
+    <p id="mensaje-texto" class="mensaje-texto" aria-live="polite">—</p>
+  </section>
+
+  <section id="bloque-sugerencia" class="tarjeta sugerencia nodirigida" aria-labelledby="titulo-sugerencia">
+    <h2 id="titulo-sugerencia">Sugerencia de colación</h2>
+    <p id="sugerencia-texto" class="sugerencia-texto" aria-live="polite">—</p>
+    <p id="sugerencia-tipo" class="nota"></p>
+    <p id="sugerencia-motivo" class="nota"></p>
+  </section>
+
+  <section id="panel-datos" class="tarjeta" aria-labelledby="titulo-datos">
+    <h2 id="titulo-datos">Datos recogidos</h2>
+    <dl class="rejilla">
+      <div><dt>QNH</dt><dd id="dato-qnh">—</dd></div>
+      <div><dt>Pista</dt><dd id="dato-pista">—</dd></div>
+      <div><dt>Viento</dt><dd id="dato-viento">—</dd></div>
+      <div><dt>Visibilidad</dt><dd id="dato-visibilidad">—</dd></div>
+      <div><dt>Nubes</dt><dd id="dato-nubes">—</dd></div>
+      <div><dt>Temp. / rocío</dt><dd id="dato-temperatura">—</dd></div>
+      <div><dt>ATIS</dt><dd id="dato-atis">—</dd></div>
+      <div><dt>Transpondedor</dt><dd id="dato-squawk">—</dd></div>
+      <div><dt>Frecuencia</dt><dd id="dato-frecuencia">—</dd></div>
+      <div><dt>Punto</dt><dd id="dato-punto">—</dd></div>
+      <div><dt>Altitud</dt><dd id="dato-altitud">—</dd></div>
+      <div><dt>Viraje</dt><dd id="dato-viraje">—</dd></div>
+      <div class="ancho"><dt>Calles de rodaje</dt><dd id="dato-calles">—</dd></div>
+    </dl>
+  </section>
+
+  <section id="controles" class="tarjeta controles" aria-labelledby="titulo-controles">
+    <h2 id="titulo-controles">Controles</h2>
+    <p class="nota">«Escuchar» (abajo) activa el micrófono solo cuando usted lo pulsa; «Detener» lo apaga.</p>
+
+    <div class="grupo">
+      <label for="entrada-manual">Entrada manual (texto de la torre)</label>
+      <textarea id="entrada-manual" rows="3" autocomplete="off" autocapitalize="sentences" spellcheck="false" placeholder="EC-DOG, autorizado a rodar punto de espera pista 23, vía calle C, calle A."></textarea>
+      <button id="btn-procesar" type="button" class="principal separado">Procesar</button>
+      <p id="estado-manual" class="nota" role="status"></p>
+    </div>
+
+    <div class="grupo">
+      <div class="fila">
+        <button id="btn-demo-siguiente" type="button">Siguiente muestra</button>
+        <button id="btn-demo-reiniciar" type="button">Reiniciar demo</button>
+      </div>
+      <p id="estado-demo" class="nota">Modo demostración: 0 de 10 muestras del guion EC-DOG / León.</p>
+    </div>
+
+    <div class="grupo">
+      <button id="btn-vaciar" type="button" class="peligro">Vaciar datos</button>
+    </div>
+
+    <fieldset>
+      <legend>Exportar registro</legend>
+      <div class="fila exportar">
+        <button id="btn-copiar" type="button">Copiar</button>
+        <button id="btn-compartir" type="button">Compartir</button>
+        <button id="btn-descargar" type="button">Descargar .txt</button>
+      </div>
+      <p id="estado-exportar" class="nota" role="status"></p>
+    </fieldset>
+  </section>
+
+  <section class="tarjeta" aria-labelledby="titulo-registro">
+    <h2 id="titulo-registro">Registro</h2>
+    <p id="registro-vacio" class="nota">Sin entradas todavía.</p>
+    <ol id="lista-registro" class="registro-lista"></ol>
+  </section>
+
+  <section class="tarjeta ayuda" aria-labelledby="titulo-ayuda">
+    <details id="ayuda">
+      <summary id="titulo-ayuda">Ayuda</summary>
+      <div class="aviso"><p><strong>AYUDA DE ENTRENAMIENTO Y APOYO. NO CERTIFICADA.</strong> Esta aplicación no es un equipo aeronáutico ni un sistema de comunicaciones. El piloto al mando y la escucha directa de la radio prevalecen siempre sobre cualquier texto, dato o sugerencia mostrados aquí. No sustituye la colación ni la disciplina radio. Si hay duda, pida repetición a la torre y ignore la sugerencia. Los datos se quedan en este dispositivo.</p></div>
+
+      <h3>Qué hace</h3>
+      <p>Recoge el texto de lo que dice la torre (voz, teclado o demostración), decide si va dirigido a su indicativo, extrae los datos operativos al panel y propone una colación según AESA / SERA.8015 (e) y el fraseo del guion de entrenamiento. Es solo una ayuda: usted decide qué transmite.</p>
+
+      <h3>Cómo llega el audio al iPhone</h3>
+      <ul>
+        <li>El iPhone <strong>no tiene receptor VHF</strong>: la app no capta la radio. Solo analiza el sonido que entra por el <strong>micrófono</strong>.</li>
+        <li>Para usarla en vuelo hay que llevar el audio del intercomunicador o del auricular al iPhone: con un <strong>adaptador cableado</strong> (salida de audio del intercom o del auricular → entrada de micrófono Lightning o USB-C, con el nivel adecuado) o dejando el micrófono del teléfono lo bastante cerca del altavoz de cabina.</li>
+        <li>Compruebe la conexión en tierra. No manipule cables ni el teléfono en fases críticas del vuelo.</li>
+        <li>El permiso de micrófono solo se pide cuando pulsa <strong>Escuchar</strong>. <strong>Detener</strong> lo apaga.</li>
+        <li>El reconocimiento de voz es el del navegador (<code>webkitSpeechRecognition</code>, idioma es-ES, modo continuo con rearranque automático si el sistema lo corta). <strong>Puede fallar</strong> con ruido de cabina, acentos, saturación o fraseología densa. Según el navegador y el sistema, el reconocimiento puede hacerse en los servicios de Apple o Google; esta app no envía nada por su cuenta.</li>
+        <li>Por eso existen la <strong>entrada manual</strong> y el <strong>modo demostración</strong> (transmisiones del guion EC-DOG / León), que funcionan sin audio y en un ordenador sin radio.</li>
+        <li>Si el micrófono también capta su propia transmisión, aparecerá como si fuera de la torre: ignore esas entradas.</li>
+      </ul>
+
+      <h3>Cómo leer la pantalla</h3>
+      <ul>
+        <li>Si el mensaje no lleva su indicativo (EC-DOG, «Echo Charlie Delta Oscar Golf», «Delta Oscar Golf»…), se muestra <strong>atenuado</strong>, sin sugerencia y sin tocar el panel.</li>
+        <li>Si no se entiende una instrucción o falta un dato obligatorio, verá «no reconocido, pide repetir». No se rellenan huecos ni se adivinan valores.</li>
+        <li>Viento, visibilidad, nubes y temperatura van al panel; no forman parte de la colación. Sí se colacionan pista, QNH, transpondedor, frecuencia, autorizaciones, altitudes y «notifique…».</li>
+        <li>Un dato nuevo sustituye al anterior del mismo campo. «Vaciar datos» limpia el panel; el registro se conserva hasta que lo exporte o borre los datos del sitio.</li>
+      </ul>
+
+      <h3>Instalar en el iPhone</h3>
+      <p>Con la app servida por HTTPS, ábrala en Safari, pulse Compartir y elija «Añadir a pantalla de inicio». Se abrirá a pantalla completa y, tras una primera carga completa, funciona sin conexión (salvo el reconocimiento de voz si el sistema lo necesita). La apertura directa del archivo no instala una PWA; en un ordenador, el servicio local de pruebas sí puede usar <code>localhost</code>.</p>
+
+      <h3>Privacidad</h3>
+      <p>Sin cuentas, sin servidor y sin peticiones de red propias. El indicativo, el panel y el registro se guardan solo en el almacenamiento local de este navegador. Exportar genera un texto plano en su dispositivo.</p>
+    </details>
+  </section>
+</div>
+
+<div class="barra" role="region" aria-label="Escucha">
+  <div class="interior">
+    <p id="estado-audio" class="barra-estado" role="status"></p>
+    <p id="audio-parcial" class="barra-estado parcial" aria-live="off"></p>
+    <button id="btn-escuchar" type="button" class="principal" aria-describedby="estado-audio">Escuchar</button>
+  </div>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ======================= Constantes ======================= */
+  var INDICATIVO_DEFECTO = "EC-DOG";
+  var CLAVES = {
+    indicativo: "colacionATC.indicativo",
+    datos: "colacionATC.datos",
+    registro: "colacionATC.registro"
+  };
+  var MAX_REGISTRO = 500;
+  var CAMPOS = ["qnh", "pista", "viento", "visibilidad", "nubes", "temperatura", "rocio", "atis",
+    "squawk", "frecuencia", "punto", "altitud", "calles", "viraje"];
+  var PRIORIDAD = ["despegue", "aterrizaje", "entrar_backtrack", "entrar_cabecera", "mantenga_posicion",
+    "puesta_en_marcha", "rodaje", "ascenso", "circuito", "transpondedor", "cambio_frecuencia",
+    "pista_en_servicio", "notifique", "informacion", "contacto", "otro"];
+  var MSG_SIN_VOZ = "Reconocimiento de voz no disponible en este navegador; use la entrada manual o el modo demostración";
+
+  /* Otro indicativo al principio de la transmisión: «IBERIA 3254», «Vueling 12AB», «EC-XYZ». */
+  var RE_OTRO_INDICATIVO = /^[\s,.;:]*(?:([a-z]{3,})\s*-?\s*\d{1,4}[a-z]{0,2}|[a-z]{1,2}-[a-z]{3,4})(?![a-z0-9])/;
+  var NO_INDICATIVO_PREFIJO = conjunto(["pista", "cabecera", "calle", "calles", "qnh", "qfe", "frecuencia", "punto", "viento",
+    "transpondedor", "squawk", "codigo", "responda", "nivel", "altitud", "rumbo", "radial", "millas", "stand", "puesto",
+    "visibilidad", "temperatura", "atis", "informacion", "numero", "fl", "ascienda", "descienda", "suba", "baje",
+    "mantenga", "notifique", "llame", "ruede", "vire", "gire", "en", "sobre", "con", "para", "hasta", "desde",
+    "few", "sct", "bkn", "ovc", "vrb", "rwy", "pies", "nudos", "grados", "las", "los", "del", "rocio", "ascenso",
+    "descenso", "velocidad", "nubes", "hora", "trafico", "alcanzando", "proximo"]);
+
+  /* Todas las transmisiones de torre del guion EC-DOG / León (líneas «-» de la fuente), en orden. */
+  var DEMO = [
+    "Buenos días, EC-DOG. Adelante.",
+    "EC-DOG puesta en marcha aprobada, datos del campo: viento 250º 15 KT visibilidad + 10 Km., nubes SCT030 BKN050 17/09 QNH 1025. Pista en servicio 23. Notifique listo rodar.",
+    "EC-DOG, autorizado a rodar punto de espera pista 23.",
+    "EC-DOG, autorizado a rodar punto de espera pista 23, via calle C, calle A.",
+    "EC-DOG, ruede punto de espera A.",
+    "EC-DOG, mantenga posición.",
+    "EC-DOG, mantenga posición, tráfico en final.",
+    "EC-DOG, autorizado a entrar cabecera 23.",
+    "EC-DOG, autorizado a entrar y backtrack pista 23.",
+    "EC-DOG, autorizado a entrar y backtrack pista 23, notifique listo.",
+    "EC-DOG, mantenga posición.",
+    "EC-DOG, autorizado a despegar pista 23, viento 24010KT.",
+    "EC-DOG, autorizado a despegar pista 23, viento 24010KT, aprobado viraje izquierda, notifique alcanzando punto S1.",
+    "EC-DOG, autorizado a despegar pista 23, viento 24010KT, notifique punto S1.",
+    "EC-DOG, autorizado a despegar pista 23, viento 24010KT, notifique punto S1. Me confirma intenciones.",
+    "EC-DOG, recibido.",
+    "EC-DOG, recibido. Sin tráfico notificado en la zona.",
+    "EC-DOG, recibido, continúe ascenso para 5500 ft.",
+    "EC-DOG, copiado, notifique abandonando zona o CTA.",
+    "EC-DOG, recibido, notifique 25 millas fuera.",
+    "Buenas de nuevo. EC-DOG. Adelante.",
+    "EC-DOG, recibido, espere la pista en servicio 23, viento 24010KT BKN035 19/09 Q1024. Notifique alcanzando o próximo o sobre punto S1.",
+    "EC-DOG, recibido, mantenga posición, le aviso para regresar al campo.",
+    "EC-DOG, proceda para el campo, notifique o llame con campo a la vista.",
+    "EC-DOG, entre en circuito de tráfico, notifique en viento en cola izquierda pista 23.",
+    "ECDOG, proceda para base izquierda pista 23.",
+    "EC-DOG, recibido. Extienda o prolongue viento en cola izquierda pista 23. Le aviso para virar.",
+    "EC-DOG, llame en base pista 23.",
+    "EC-DOG, a la vista, autorizado a aterrizar pista 23, viento 25010KT.",
+    "EC-DOG, autorizado a aterrizar pista 23, viento 25010KT. Abandone por calle B.",
+    "Recibido, continúe rodaje a plataforma militar. EC-DOG."
+  ];
+
+  /* Alfabeto fonético OACI completo (con variantes habituales en dictado). */
+  var FONETICO = {
+    alfa: "A", alpha: "A", bravo: "B", charlie: "C", charly: "C", delta: "D", echo: "E", eco: "E",
+    foxtrot: "F", foxtrott: "F", fox: "F", golf: "G", hotel: "H", india: "I", juliett: "J", juliet: "J",
+    kilo: "K", lima: "L", mike: "M", november: "N", oscar: "O", papa: "P", quebec: "Q", romeo: "R",
+    sierra: "S", tango: "T", uniform: "U", uniforme: "U", victor: "V", whiskey: "W", whisky: "W",
+    xray: "X", yankee: "Y", yanqui: "Y", zulu: "Z"
+  };
+
+  var UNIDADES = { cero: 0, uno: 1, dos: 2, tres: 3, cuatro: 4, cinco: 5, seis: 6, siete: 7, ocho: 8, nueve: 9 };
+  var ESPECIALES = {
+    diez: 10, once: 11, doce: 12, trece: 13, catorce: 14, quince: 15, dieciseis: 16, diecisiete: 17,
+    dieciocho: 18, diecinueve: 19, veinte: 20, veintiuno: 21, veintidos: 22, veintitres: 23,
+    veinticuatro: 24, veinticinco: 25, veintiseis: 26, veintisiete: 27, veintiocho: 28, veintinueve: 29
+  };
+  var DECENAS = { treinta: 30, cuarenta: 40, cincuenta: 50, sesenta: 60, setenta: 70, ochenta: 80, noventa: 90 };
+  var CENTENAS = {
+    cien: 100, ciento: 100, doscientos: 200, doscientas: 200, trescientos: 300, trescientas: 300,
+    cuatrocientos: 400, cuatrocientas: 400, quinientos: 500, quinientas: 500, seiscientos: 600,
+    seiscientas: 600, setecientos: 700, setecientas: 700, ochocientos: 800, ochocientas: 800,
+    novecientos: 900, novecientas: 900
+  };
+
+  /* Palabras que indican una instrucción: si quedan sin interpretar, no se sugiere colación. */
+  var IMPERATIVOS = conjunto(("realice efectue haga proceda vire gire mantenga mantengase mantener descienda ascienda " +
+    "suba baje reduzca aumente incremente notifique llame informe contacte pase cambie seleccione active apague " +
+    "encienda compruebe confirme espere siga continue entre entrar abandone ruede rueda rodar cruce cruzar regrese " +
+    "retroceda extienda prolongue orbite ajuste ponga salga aterrice aterrizar frustre aborte cancele detenga " +
+    "detengase pare avise evite libere deje incorporese integrese autorizado autorizada aprobado aprobada alinee " +
+    "alineese despegue despegar vuele identifique squawk responda motor denegado denegada cancelado cancelada " +
+    "anule mantengan vigile").split(" "));
+  var ACRONIMOS = conjunto("qnh qfe cta ctr atz tma vor ndb ils vfr ifr atis ssr kt gps rnav dme afis ulm ats fis acc app twr fl".split(" "));
+  var ACENTOS = {
+    via: "vía", posicion: "posición", informacion: "información", trafico: "tráfico", proximo: "próximo",
+    proxima: "próxima", aproximacion: "aproximación", transicion: "transición", interseccion: "intersección",
+    despues: "después", detras: "detrás", numero: "número", orbita: "órbita", area: "área", transito: "tránsito",
+    continue: "continúe", ultimo: "último", ultima: "última", notificacion: "notificación", direccion: "dirección",
+    leon: "León", rapido: "rápido", rapida: "rápida", tambien: "también", circulacion: "circulación",
+    rocio: "rocío", dias: "días", cessna: "Cessna", piper: "Piper", tecnam: "Tecnam", madrid: "Madrid"
+  };
+  var CONTEXTO_DESIGNADOR = conjunto("calle calles punto espera interseccion puerta stand".split(" "));
+  var ARTICULOS = conjunto("la el los las del de".split(" "));
+  var PALABRAS_VACIAS_PUNTO = conjunto("de del el la lo los las en al y o u e un una".split(" "));
+
+  /* ======================= Utilidades ======================= */
+  function conjunto(lista) {
+    var o = Object.create(null);
+    for (var i = 0; i < lista.length; i++) if (lista[i]) o[lista[i]] = true;
+    return o;
+  }
+  function tiene(obj, clave) { return Object.prototype.hasOwnProperty.call(obj, clave); }
+  function copiar(v) { return v === undefined ? undefined : JSON.parse(JSON.stringify(v)); }
+  function pad(numero, ancho) { var s = String(numero); while (s.length < ancho) s = "0" + s; return s; }
+
+  var cacheCaracter = Object.create(null);
+  function caracterBase(c) {
+    var r = cacheCaracter[c];
+    if (r !== undefined) return r;
+    var minus = c.toLowerCase();
+    var base = minus.normalize ? minus.normalize("NFD").replace(/[\u0300-\u036f]/g, "") : minus;
+    if (base.length !== 1) base = minus.length === 1 ? minus : c;
+    cacheCaracter[c] = base;
+    return base;
+  }
+  /* Minúsculas y sin tildes conservando la longitud (para alinear posiciones con el texto original). */
+  function plano(s) {
+    var out = "";
+    for (var i = 0; i < s.length; i++) out += caracterBase(s.charAt(i));
+    return out;
+  }
+  function blanquear(s, ini, fin) {
+    return s.slice(0, ini) + new Array(fin - ini + 1).join(" ") + s.slice(fin);
+  }
+  function datosVacios() {
+    return {
+      qnh: null, pista: null, viento: null, visibilidad: null, nubes: null, temperatura: null, rocio: null,
+      atis: null, squawk: null, frecuencia: null, punto: null, altitud: null, calles: [], viraje: null
+    };
+  }
+
+  /* ======================= Números hablados ======================= */
+  var PALABRAS_NUMERO = Object.keys(UNIDADES).concat(Object.keys(ESPECIALES), Object.keys(DECENAS), Object.keys(CENTENAS), ["mil"])
+    .sort(function (a, b) { return b.length - a.length; });
+  var TOKEN_NUMERO = "(?:" + PALABRAS_NUMERO.join("|") + "|\\d+)(?![a-z0-9])";
+  var RE_TRAMO_NUMERO = new RegExp("\\b" + TOKEN_NUMERO + "(?:\\s+(?:(?:y|decimal|coma|punto)\\s+)?" + TOKEN_NUMERO + ")*", "g");
+
+  function esDigitoSimple(t) { return tiene(UNIDADES, t) || /^\d$/.test(t); }
+  function valorDigito(t) { return /^\d$/.test(t) ? t : String(UNIDADES[t]); }
+
+  function numeroCompuesto(toks, i) {
+    var total = 0, actual = 0, j = i, ultimo = "", vioMil = false, usado = false;
+    while (j < toks.length) {
+      var t = toks[j];
+      if (t === "mil") {
+        if (vioMil || actual >= 1000) break;
+        /* «mil cero uno tres» (QNH dicho a medias en cifras) = 1013: «mil» seguido de exactamente tres dígitos sueltos. */
+        if (j === i && esDigitoSimple(toks[j + 1] || "") && esDigitoSimple(toks[j + 2] || "") &&
+            esDigitoSimple(toks[j + 3] || "") && !esDigitoSimple(toks[j + 4] || "") && toks[j + 4] !== "mil") {
+          return { valor: 1000 + parseInt(valorDigito(toks[j + 1]) + valorDigito(toks[j + 2]) + valorDigito(toks[j + 3]), 10), fin: j + 4 };
+        }
+        total = (actual || 1) * 1000; actual = 0; vioMil = true; ultimo = "mil"; usado = true; j++;
+        continue;
+      }
+      if (t === "y") {
+        var sig = toks[j + 1];
+        if (ultimo === "decena" && sig && tiene(UNIDADES, sig) && sig !== "cero") { ultimo = "y"; j++; continue; }
+        break;
+      }
+      var v = null, clase = "";
+      if (tiene(UNIDADES, t)) { v = UNIDADES[t]; clase = "unidad"; }
+      else if (tiene(ESPECIALES, t)) { v = ESPECIALES[t]; clase = "especial"; }
+      else if (tiene(DECENAS, t)) { v = DECENAS[t]; clase = "decena"; }
+      else if (tiene(CENTENAS, t)) { v = CENTENAS[t]; clase = "centena"; }
+      else if (/^\d{1,3}$/.test(t)) { v = parseInt(t, 10); clase = "numeral"; }
+      else break;
+      if (clase === "unidad") {
+        if (v === 0) {
+          var sigMil = toks[j + 1];
+          if (vioMil && ultimo === "mil" && sigMil && (tiene(UNIDADES, sigMil) || tiene(ESPECIALES, sigMil) || tiene(DECENAS, sigMil))) {
+            ultimo = "cero_mil"; j++; continue;
+          }
+          break;
+        }
+        if (ultimo === "unidad" || ultimo === "especial" || ultimo === "numeral") break;
+        if (ultimo !== "y" && actual % 10 !== 0) break;
+      } else if (clase === "especial" || clase === "decena") {
+        if (actual % 100 !== 0 || ultimo === "unidad" || ultimo === "especial" || ultimo === "decena" || ultimo === "numeral") break;
+      } else if (clase === "centena") {
+        if (actual !== 0) break;
+      } else if (clase === "numeral") {
+        var multiplicador = !vioMil && actual === 0 && toks[j + 1] === "mil";
+        var resto = vioMil && (ultimo === "mil" || ultimo === "cero_mil") && actual === 0;
+        if (!multiplicador && !resto) break;
+      }
+      actual += v; ultimo = clase; usado = true; j++;
+    }
+    return usado ? { valor: total + actual, fin: j } : null;
+  }
+
+  function convertirTramo(tramo) {
+    var toks = tramo.split(/\s+/);
+    var piezas = [];
+    var i = 0;
+    while (i < toks.length) {
+      var t = toks[i];
+      if (t === "y" || t === "decimal" || t === "coma" || t === "punto") { piezas.push({ sep: t }); i++; continue; }
+      if (esDigitoSimple(t) && toks[i + 1] !== "mil") {
+        var s = "";
+        while (i < toks.length && esDigitoSimple(toks[i]) && toks[i + 1] !== "mil") { s += valorDigito(toks[i]); i++; }
+        piezas.push({ num: s });
+        continue;
+      }
+      if (/^\d{2,}$/.test(t) && toks[i + 1] !== "mil") { piezas.push({ num: t }); i++; continue; }
+      var r = numeroCompuesto(toks, i);
+      if (r) { piezas.push({ num: String(r.valor) }); i = r.fin; continue; }
+      piezas.push({ sep: t }); i++;
+    }
+    var res = [];
+    for (var k = 0; k < piezas.length; k++) {
+      var p = piezas[k];
+      var previo = res.length ? res[res.length - 1] : null;
+      var siguiente = piezas[k + 1];
+      if (p.sep && (p.sep === "decimal" || p.sep === "coma" || p.sep === "punto") && previo && previo.num !== undefined &&
+          siguiente && siguiente.num !== undefined) {
+        var entero = parseInt(previo.num, 10);
+        if (p.sep !== "punto" || (previo.num.length === 3 && entero >= 108 && entero <= 137)) {
+          var frac = siguiente.num;
+          while (piezas[k + 2] && piezas[k + 2].num !== undefined && (frac + piezas[k + 2].num).length <= 3) {
+            frac += piezas[k + 2].num;
+            k++;
+          }
+          res[res.length - 1] = { num: previo.num + "." + frac };
+          k++;
+          continue;
+        }
+      }
+      res.push(p);
+    }
+    return res.map(function (x) { return x.num !== undefined ? x.num : x.sep; }).join(" ");
+  }
+
+  /* Devuelve { disp, n } de igual longitud: disp conserva mayúsculas y tildes; n en minúsculas sin tildes. */
+  function prepararTexto(texto) {
+    var o = String(texto === undefined || texto === null ? "" : texto);
+    if (o.normalize) o = o.normalize("NFC");
+    o = o.replace(/[\u2010-\u2015\u2212]/g, "-").replace(/[\u00ba\u00b0]/g, " ").replace(/[\s\u00a0]+/g, " ").trim();
+    var n = plano(o);
+    var cambios = [];
+    var m;
+    RE_TRAMO_NUMERO.lastIndex = 0;
+    while ((m = RE_TRAMO_NUMERO.exec(n)) !== null) {
+      var nuevo = convertirTramo(m[0]);
+      if (nuevo !== m[0]) cambios.push({ ini: m.index, fin: m.index + m[0].length, txt: nuevo });
+    }
+    for (var k = cambios.length - 1; k >= 0; k--) {
+      var c = cambios[k];
+      o = o.slice(0, c.ini) + c.txt + o.slice(c.fin);
+      n = n.slice(0, c.ini) + c.txt + n.slice(c.fin);
+    }
+    var reComa = /\b(1[0-3]\d),(\d{1,3})\b/g;
+    while ((m = reComa.exec(n)) !== null) {
+      var pos = m.index + m[1].length;
+      o = o.slice(0, pos) + "." + o.slice(pos + 1);
+      n = n.slice(0, pos) + "." + n.slice(pos + 1);
+    }
+    return { disp: o, n: n };
+  }
+
+  /* ======================= Indicativo ======================= */
+  function normalizarIndicativo(valor) {
+    var s = String(valor === undefined || valor === null ? "" : valor);
+    if (s.normalize) s = s.normalize("NFC");
+    s = s.toUpperCase().trim()
+      .replace(/[\u2010-\u2015\u2212_.\s]+/g, "-")
+      .replace(/[^A-Z0-9-]/g, "")
+      .replace(/-+/g, "-")
+      .replace(/^-+|-+$/g, "");
+    if (/^EC[A-Z0-9]{3,4}$/.test(s)) s = "EC-" + s.slice(2);
+    var compacto = s.replace(/-/g, "");
+    if (compacto.length < 3 || compacto.length > 10 || !/[A-Z]/.test(compacto)) return null;
+    return s;
+  }
+
+  function tokenizar(n) {
+    var toks = [], re = /[a-z0-9]+/g, m;
+    while ((m = re.exec(n)) !== null) toks.push({ t: m[0], ini: m.index, fin: m.index + m[0].length });
+    return toks;
+  }
+
+  function esTokenFuerte(toks, j) {
+    if (j < 0 || j >= toks.length) return false;
+    var t = toks[j].t;
+    return tiene(FONETICO, t) || t === "ray";
+  }
+
+  function letrasDeToken(toks, j, multis, esperado) {
+    var t = toks[j].t;
+    if (t === "x" && toks[j + 1] && toks[j + 1].t === "ray") return { letras: "X", consume: 2 };
+    if (multis[t] && esperado && esperado.indexOf(t.toUpperCase()) === 0 &&
+        (t.length === esperado.length ? !esTokenFuerte(toks, j + 1) : true)) {
+      return { letras: t.toUpperCase(), consume: 1 };
+    }
+    if (tiene(FONETICO, t)) return { letras: FONETICO[t], consume: 1 };
+    if (t.length === 1) return { letras: t.toUpperCase(), consume: 1 };
+    if (multis[t] || /^\d+$/.test(t)) return { letras: t.toUpperCase(), consume: 1 };
+    return null;
+  }
+
+  function casarIndicativo(toks, i, objetivo, multis) {
+    var pos = 0, j = i;
+    while (pos < objetivo.length) {
+      if (j >= toks.length) return -1;
+      var l = letrasDeToken(toks, j, multis, objetivo.slice(pos));
+      if (!l || objetivo.substr(pos, l.letras.length) !== l.letras) return -1;
+      pos += l.letras.length;
+      j += l.consume;
+    }
+    return j;
+  }
+
+  function letraDeletreoAdyacente(n, toks, idx, haciaAtras) {
+    if (idx < 0 || idx >= toks.length) return false;
+    var t = toks[idx].t;
+    if (t.length !== 1 || /^[aeouy]$/.test(t)) return false;
+    var vecino = haciaAtras ? toks[idx + 1] : toks[idx - 1];
+    var entre = haciaAtras ? n.slice(toks[idx].fin, vecino.ini) : n.slice(vecino.fin, toks[idx].ini);
+    return /^[\s-]*$/.test(entre);
+  }
+
+  /* Devuelve los tramos [ini, fin) del texto plano donde aparece el indicativo configurado. */
+  function buscarIndicativo(n, indicativo) {
+    var compacto = indicativo.replace(/-/g, "");
+    var partes = indicativo.split("-");
+    var abreviado = compacto.length > 3 ? compacto.slice(-3) : null;
+    var multis = Object.create(null);
+    multis[compacto.toLowerCase()] = true;
+    partes.forEach(function (p) { if (p) multis[p.toLowerCase()] = true; });
+    if (abreviado) multis[abreviado.toLowerCase()] = true;
+    var objetivos = abreviado ? [compacto, abreviado] : [compacto];
+    var toks = tokenizar(n);
+    var tramos = [];
+    for (var i = 0; i < toks.length; i++) {
+      for (var k = 0; k < objetivos.length; k++) {
+        var fin = casarIndicativo(toks, i, objetivos[k], multis);
+        if (fin < 0) continue;
+        var iniChar = toks[i].ini, finChar = toks[fin - 1].fin;
+        if ((iniChar > 0 && n.charAt(iniChar - 1) === "-") || n.charAt(finChar) === "-") continue;
+        if (esTokenFuerte(toks, i - 1) || esTokenFuerte(toks, fin)) continue;
+        if (letraDeletreoAdyacente(n, toks, i - 1, true) || letraDeletreoAdyacente(n, toks, fin, false)) continue;
+        var previo1 = toks[i - 1] ? toks[i - 1].t : "", previo2 = toks[i - 2] ? toks[i - 2].t : "";
+        if (previo1 === "trafico" || previo2 === "trafico") continue;
+        tramos.push({ ini: iniChar, fin: finChar });
+        i = fin - 1;
+        break;
+      }
+    }
+    return tramos;
+  }
+
+  /* ======================= Extracción de datos ======================= */
+  function clausulas(n) {
+    var res = [], ini = 0, m;
+    var re = /[,;:!?¡¿()"«»\[\]]|\.(?=\s|$|[,;:"»)])|\s-\s/g;
+    while ((m = re.exec(n)) !== null) {
+      if (m.index > ini) res.push({ ini: ini, fin: m.index });
+      ini = m.index + m[0].length;
+    }
+    if (ini < n.length) res.push({ ini: ini, fin: n.length });
+    return res;
+  }
+  function clausulaEn(cls, pos) {
+    for (var i = 0; i < cls.length; i++) if (pos >= cls[i].ini && pos < cls[i].fin) return cls[i];
+    return { ini: pos, fin: pos };
+  }
+
+  function tokensDesde(n, pos, max) {
+    var re = /[a-z0-9]+|[,;:.!?]/g, m, out = [];
+    re.lastIndex = pos;
+    while ((m = re.exec(n)) !== null && out.length < max) {
+      if (/^[,;:.!?]$/.test(m[0])) { if (m[0] !== "." || !/\d/.test(n.charAt(m.index + 1))) break; continue; }
+      out.push({ t: m[0], ini: m.index, fin: m.index + m[0].length });
+    }
+    return out;
+  }
+
+  /* Designador de punto: «S1», «A», «SE», «sierra uno»… */
+  function leerPunto(n, pos, permitirA) {
+    var toks = tokensDesde(n, pos, 5);
+    if (!toks.length) return null;
+    var t0 = toks[0].t;
+    if (tiene(FONETICO, t0) || (t0 === "x" && toks[1] && toks[1].t === "ray")) {
+      var letras = "", j = 0;
+      while (j < toks.length && letras.length < 3) {
+        if (toks[j].t === "x" && toks[j + 1] && toks[j + 1].t === "ray") { letras += "X"; j += 2; continue; }
+        if (tiene(FONETICO, toks[j].t)) { letras += FONETICO[toks[j].t]; j++; continue; }
+        break;
+      }
+      var fin = toks[j - 1].fin;
+      if (toks[j] && /^\d{1,2}$/.test(toks[j].t)) { letras += toks[j].t; fin = toks[j].fin; }
+      return { codigo: letras, fin: fin };
+    }
+    if (/^[a-z]{1,2}\d{0,2}$/.test(t0)) {
+      if (tiene(PALABRAS_VACIAS_PUNTO, t0)) {
+        var sigPt = toks[1] ? toks[1].t : "";
+        var vocalDesignador = /^[aeou]$/.test(t0) && !tiene(ARTICULOS, sigPt) &&
+          (t0 === "a" ? (permitirA || toks.length === 1) : (permitirA || toks.length === 1 || /^\d{1,2}$/.test(sigPt)));
+        if (!vocalDesignador) return null;
+      }
+      var codigo = t0.toUpperCase(), finP = toks[0].fin;
+      if (!/\d/.test(t0) && toks[1] && /^\d{1,2}$/.test(toks[1].t)) { codigo += toks[1].t; finP = toks[1].fin; }
+      return { codigo: codigo, fin: finP };
+    }
+    return null;
+  }
+
+  function esDesignadorCalle(toks, j) {
+    var t = toks[j] ? toks[j].t : null;
+    if (!t) return null;
+    var sig = toks[j + 1] ? toks[j + 1].t : "";
+    if (tiene(FONETICO, t)) {
+      var c = FONETICO[t], consume = 1;
+      if (/^\d$/.test(sig)) { c += sig; consume = 2; }
+      return { codigo: c, consume: consume };
+    }
+    if (/^[a-z]\d?$/.test(t) && t !== "y") {
+      if (/^[aeou]$/.test(t) && tiene(ARTICULOS, sig)) return null;
+      return { codigo: t.toUpperCase(), consume: 1 };
+    }
+    return null;
+  }
+
+  /* Lista de calles tras «calle(s)»: «C», «C y A», «charlie, alfa»… */
+  function leerCalles(n, pos) {
+    var re = /[a-z0-9]+|[,]|[;:.!?]/g, m, toks = [];
+    re.lastIndex = pos;
+    while ((m = re.exec(n)) !== null && toks.length < 12) {
+      if (/^[;:.!?]$/.test(m[0])) break;
+      toks.push({ t: m[0], ini: m.index, fin: m.index + m[0].length });
+    }
+    var codigos = [], j = 0, fin = pos;
+    while (j < toks.length) {
+      var d = esDesignadorCalle(toks, j);
+      if (!d) break;
+      codigos.push(d.codigo);
+      fin = toks[j + d.consume - 1].fin;
+      j += d.consume;
+      if (toks[j] && (toks[j].t === "y" || toks[j].t === "e" || toks[j].t === ",")) {
+        var k = j + 1;
+        if (toks[k] && (toks[k].t === "calle" || toks[k].t === "calles")) break;
+        if (toks[k] && esDesignadorCalle(toks, k)) { j = k; continue; }
+      }
+      break;
+    }
+    return { codigos: codigos, fin: fin };
+  }
+
+  /* Altitud al comienzo de un tramo: «5500 ft», «5500 pies», «FL055», «nivel de vuelo 55», «5500». */
+  function leerAltitud(n, pos, limite) {
+    var resto = n.slice(pos, limite === undefined ? n.length : limite);
+    var pre = /^\s*(?:y\s+mantenga\s+|mantenga\s+)?(?:(?:para|a|hasta|de)\s+)?(?:(?:la\s+)?altitud\s+(?:de\s+)?)?/.exec(resto);
+    var off = pre ? pre[0].length : 0;
+    var r = resto.slice(off), m;
+    if ((m = /^(\d{3,5})\s*(?:ft|pies)\b/.exec(r))) return { texto: parseInt(m[1], 10) + " ft", fin: pos + off + m[0].length };
+    if ((m = /^(?:fl\s*|(?:el\s+)?nivel\s+(?:de\s+vuelo\s+)?)(\d{2,3})\b/.exec(r))) return { texto: "FL" + pad(parseInt(m[1], 10), 3), fin: pos + off + m[0].length };
+    if ((m = /^(\d{3,5})\b/.exec(r))) return { texto: String(parseInt(m[1], 10)), fin: pos + off + m[0].length };
+    return null;
+  }
+
+  function construirViento(dir, vel, racha, unidad) {
+    var d = dir === "vrb" || dir === "variable" ? "VRB" : parseInt(dir, 10);
+    var v = parseInt(vel, 10);
+    if (d !== "VRB" && (isNaN(d) || d > 360)) return null;
+    if (isNaN(v) || v > 199) return null;
+    var w = { direccion: d, velocidad: v, unidad: unidad === "mps" ? "MPS" : "KT" };
+    if (racha) w.rachas = parseInt(racha, 10);
+    return w;
+  }
+
+  function extraerDatos(n, disp) {
+    var d = datosVacios();
+    var ilegible = { pista: false, qnh: false, squawk: false };
+    var m, re;
+
+    /* QNH */
+    re = /\b(?:qnh\s*(\d{2})\s+(\d{2})\b|qnh\s*(\d{1,5})\b|q\s?(\d{4})\b)/g;
+    while ((m = re.exec(n)) !== null) {
+      var sq = m[1] ? m[1] + m[2] : (m[3] || m[4]);
+      var vq = parseInt(sq, 10);
+      if (sq.length >= 3 && sq.length <= 4 && vq >= 850 && vq <= 1099) d.qnh = vq;
+      else ilegible.qnh = true;
+    }
+    if (/\bqnh\b/.test(n) && d.qnh === null) ilegible.qnh = true;
+
+    /* Pista (la «en servicio / en uso» tiene preferencia) */
+    var pistaServicio = null, pistaPrimera = null;
+    re = /\b(?:pista|cabecera)\s+(en\s+(?:servicio|uso)\s+)?(?:la\s+)?(\d{1,3})([lrc])?\b/g;
+    while ((m = re.exec(n)) !== null) {
+      var np = parseInt(m[2], 10);
+      if (m[2].length <= 2 && np >= 1 && np <= 36) {
+        var p = pad(np, 2) + (m[3] ? m[3].toUpperCase() : "");
+        if (m[1]) pistaServicio = p;
+        if (pistaPrimera === null) pistaPrimera = p;
+      } else {
+        ilegible.pista = true;
+      }
+    }
+    d.pista = pistaServicio || pistaPrimera;
+
+    /* Viento: 24010KT, 24010G20KT, VRB03KT; «viento 250 15 KT»; «viento 250 grados 15 nudos»; calma */
+    var vientos = [];
+    re = /\b(\d{3}|vrb)(\d{2,3})(?:g(\d{2,3}))?(kt|mps)\b/g;
+    while ((m = re.exec(n)) !== null) vientos.push({ pos: m.index, v: construirViento(m[1], m[2], m[3], m[4]) });
+    re = /\bviento\s+(?:de\s+(?:los\s+)?)?(\d{3}|variable)\s*(?:grados\s+)?(?:(?:con|a|de)\s+)?(\d{1,3})\s*(?:kt|kts|nudos)\b(?:\s*(?:con\s+)?rachas?\s+(?:de\s+)?(\d{1,3}))?/g;
+    while ((m = re.exec(n)) !== null) vientos.push({ pos: m.index, v: construirViento(m[1], m[2], m[3], "kt") });
+    re = /\bviento\s+(?:en\s+)?calma\b/g;
+    while ((m = re.exec(n)) !== null) vientos.push({ pos: m.index, v: { direccion: null, velocidad: 0, unidad: "KT" } });
+    vientos.sort(function (a, b) { return a.pos - b.pos; });
+    for (var iv = 0; iv < vientos.length; iv++) if (vientos[iv].v) d.viento = vientos[iv].v;
+
+    /* Visibilidad: se conserva el texto tal como se dijo («+ 10 Km») */
+    re = /\bvisibilidad\s+(?:horizontal\s+|reinante\s+|de\s+)?((?:\+|mas\s+de|mayor\s+de|superior\s+a)?\s*\d+(?:[.,]\d+)?\s*(?:km|kilometros?|metros?|m)\b|\d{4}\b)/g;
+    while ((m = re.exec(n)) !== null) {
+      var finV = m.index + m[0].length, iniV = finV - m[1].length;
+      d.visibilidad = disp.slice(iniV, finV).trim();
+    }
+    if (d.visibilidad === null && /\bcavok\b/.test(n)) d.visibilidad = "CAVOK";
+
+    /* Nubes */
+    var nubes = [];
+    re = /\b(?:few|sct|bkn|ovc|vv)\d{3}(?:cb|tcu)?\b|\b(?:nsc|skc|ncd|clr)\b/g;
+    while ((m = re.exec(n)) !== null) nubes.push(m[0].toUpperCase());
+    if (nubes.length) d.nubes = nubes.join(" ");
+    else if (/\bcavok\b/.test(n)) d.nubes = "CAVOK";
+
+    /* Temperatura / punto de rocío */
+    function grados(s) { var neg = /^m/.test(s) || /menos/.test(s); var v = parseInt(s.replace(/\D/g, ""), 10); return neg ? -v : v; }
+    re = /(?:^|[^\w\/.])(m?\d{1,2})\/(m?\d{1,2})(?![\w\/])/g;
+    while ((m = re.exec(n)) !== null) {
+      var t1 = grados(m[1]), t2 = grados(m[2]);
+      if (Math.abs(t1) <= 60 && Math.abs(t2) <= 60 && t2 <= t1) { d.temperatura = t1; d.rocio = t2; }
+    }
+    if ((m = /\btemperatura\s+(menos\s+)?(\d{1,2})\b/.exec(n))) d.temperatura = m[1] ? -parseInt(m[2], 10) : parseInt(m[2], 10);
+    if ((m = /\b(?:punto\s+de\s+)?rocio\s+(menos\s+)?(\d{1,2})\b/.exec(n))) d.rocio = m[1] ? -parseInt(m[2], 10) : parseInt(m[2], 10);
+
+    /* ATIS: letra suelta o deletreada, tanto tras «ATIS» como tras «información». */
+    re = /\b(atis|informacion)\s+(atis\s+|letra\s+)?([a-z]+(?:-[a-z]+)?)\b/g;
+    while ((m = re.exec(n)) !== null) {
+      var claveAtis = m[3].replace(/-/g, "");
+      if (tiene(FONETICO, claveAtis)) {
+        d.atis = FONETICO[claveAtis];
+      } else if (m[3].length === 1) {
+        var finAtis = m.index + m[0].length;
+        var origLetra = disp.charAt(finAtis - 1);
+        var siguePalabra = /^\s+[a-z0-9]/.test(n.slice(finAtis));
+        if (m[1] === "informacion" && !m[2] && /^[aeouy]$/.test(m[3]) && origLetra === origLetra.toLowerCase() && siguePalabra) continue;
+        d.atis = m[3].toUpperCase();
+      }
+    }
+
+    /* Transpondedor */
+    re = /\b(?:transpondedor|squawk|codigo\s+ssr|codigo|responda)\s+(?:codigo\s+)?(?:ssr\s+)?(\d{3,5})\b/g;
+    while ((m = re.exec(n)) !== null) {
+      if (/^[0-7]{4}$/.test(m[1])) d.squawk = m[1]; else ilegible.squawk = true;
+    }
+
+    /* Frecuencia */
+    re = /\b(1[0-3]\d)\.(\d{1,3})\b/g;
+    while ((m = re.exec(n)) !== null) {
+      var fe = parseInt(m[1], 10);
+      if (fe >= 108 && fe <= 137) d.frecuencia = m[1] + "." + m[2];
+    }
+    if (!d.frecuencia && (m = /\bfrecuencia\s+(1[0-3]\d)\s?(\d{2,3})\b/.exec(n))) {
+      var fe2 = parseInt(m[1], 10);
+      if (fe2 >= 108 && fe2 <= 137) d.frecuencia = m[1] + "." + m[2];
+    }
+
+    /* Punto (de notificación o de espera) */
+    re = /\bpunto\s+(?:de\s+(espera|notificacion)\s+)?/g;
+    while ((m = re.exec(n)) !== null) {
+      var pt = leerPunto(n, m.index + m[0].length, m[1] === "espera");
+      if (pt) d.punto = pt.codigo;
+    }
+
+    /* Altitud (no el nivel de transición) */
+    var alts = [];
+    re = /\b(\d{3,5})\s*(?:ft|pies)\b/g;
+    while ((m = re.exec(n)) !== null) {
+      /* «nubes dispersas a 3000 pies» es base de nubes, no una altitud asignada */
+      if (/\b(?:nubes?|nubosidad|dispersas|rotas|cubierto|pocas|techo|base)\b[^,;:.]*$/.test(n.slice(Math.max(0, m.index - 40), m.index))) continue;
+      alts.push({ pos: m.index, a: parseInt(m[1], 10) + " ft" });
+    }
+    re = /\b(?:fl\s*|nivel\s+de\s+vuelo\s+)(\d{2,3})\b/g;
+    while ((m = re.exec(n)) !== null) alts.push({ pos: m.index, a: "FL" + pad(parseInt(m[1], 10), 3) });
+    re = /\b(?:ascienda|ascenso|descienda|descenso|suba|baje|altitud|mantenga)\s+(?:y\s+mantenga\s+)?(?:(?:para|a|hasta|de)\s+)?(?:altitud\s+)?(\d{3,5})\b(?!\s*(?:ft|pies)\b)/g;
+    while ((m = re.exec(n)) !== null) alts.push({ pos: m.index, a: String(parseInt(m[1], 10)) });
+    alts.sort(function (a, b) { return a.pos - b.pos; });
+    if (alts.length) d.altitud = alts[alts.length - 1].a;
+
+    /* Calles de rodaje */
+    re = /\bcalles?\s+(?:de\s+rodaje\s+)?/g;
+    while ((m = re.exec(n)) !== null) {
+      var lc = leerCalles(n, m.index + m[0].length);
+      lc.codigos.forEach(function (c) { if (d.calles.indexOf(c) < 0) d.calles.push(c); });
+    }
+
+    /* Viraje */
+    re = /\b(?:viraje|vire|gire|giro)\s+(?:(?:a|por|hacia)\s+(?:la\s+)?)?(izquierda|derecha)\b/g;
+    while ((m = re.exec(n)) !== null) d.viraje = m[1];
+
+    return { datos: d, ilegible: ilegible };
+  }
+
+  /* ======================= Formato de colación ======================= */
+  function formatearEco(s) {
+    var t = String(s || "").replace(/\s+/g, " ").trim().toLowerCase();
+    t = t.replace(/^[\s,;:.]+|[\s,;:.]+$/g, "").replace(/^y\s+/, "").replace(/\s+y$/, "");
+    if (!t) return "";
+    var partes = t.split(" ");
+    var nucleos = partes.map(function (w) { return plano(w).replace(/[^a-z0-9+]/g, ""); });
+    var out = [], lista = false, letrasPendientes = false;
+    for (var i = 0; i < partes.length; i++) {
+      var w = partes[i];
+      var mm = /^([^0-9a-záéíóúüñ+]*)(.*?)([^0-9a-záéíóúüñ]*)$/.exec(w);
+      var pre = mm ? mm[1] : "", nucleo = mm ? mm[2] : w, post = mm ? mm[3] : "";
+      var p = nucleos[i];
+      var previo = i > 0 ? nucleos[i - 1] : "";
+      var comaPrevia = i > 0 && /,$/.test(partes[i - 1]);
+      var siguiente = nucleos[i + 1] || "";
+      var designador = false;
+      if (letrasPendientes && !pre && /^\d{1,2}$/.test(p)) {
+        out[out.length - 1] += nucleo + post;
+        letrasPendientes = false;
+        continue;
+      }
+      letrasPendientes = false;
+      var contexto = tiene(CONTEXTO_DESIGNADOR, previo) || (lista && (previo === "y" || previo === "e" || comaPrevia));
+      if (contexto) {
+        if (tiene(FONETICO, p)) { nucleo = FONETICO[p]; designador = true; }
+        else if (/^[a-z]\d{0,2}$/.test(p) && p !== "y" && !(/^[aeou]$/.test(p) && tiene(ARTICULOS, siguiente))) { nucleo = p.toUpperCase(); designador = true; }
+        else if (previo === "punto" && /^[a-z]{2}\d{0,2}$/.test(p) && !tiene(PALABRAS_VACIAS_PUNTO, p)) { nucleo = p.toUpperCase(); designador = true; }
+      }
+      if (!designador) {
+        if (tiene(ACENTOS, p)) nucleo = ACENTOS[p];
+        else if (tiene(ACRONIMOS, p)) nucleo = p.toUpperCase();
+        else if (/^[a-z]{1,2}\d{1,2}$/.test(p)) nucleo = p.toUpperCase();
+        else if (/^\d{1,2}[lrc]$/.test(p)) nucleo = p.toUpperCase();
+      }
+      if (designador) lista = true;
+      else if (p !== "y" && p !== "e") lista = false;
+      if (designador && /^[A-Z]{1,2}$/.test(nucleo) && !post) letrasPendientes = true;
+      out.push(pre + nucleo + post);
+    }
+    return out.join(" ").replace(/\s+,/g, ",").trim();
+  }
+
+  function colapsarAlternativas(t) {
+    return t.replace(/^(alcanzando|próximo|proximo|sobre|cruzando)((?:\s+o\s+(?:alcanzando|próximo|proximo|sobre|cruzando))+)(?=\s|$)/, "$1");
+  }
+
+  /* ======================= Detección de instrucciones ======================= */
+  var RE_METEO = /\bviento\s+(?:de\s+)?(?:\d|calma|en\s+calma|variable)|\b(?:\d{3}|vrb)\d{2,3}(?:g\d{2,3})?(?:kt|mps)\b|\bvisibilidad\b|\b(?:few|sct|bkn|ovc|vv)\d{3}|\b(?:nsc|skc|cavok)\b|\btemperatura\b|\b(?:punto\s+de\s+)?rocio\b|\bm?\d{1,2}\/m?\d{1,2}\b/g;
+  var RE_NEGACION = /\b(?:no|denegad[oa]|cancel\w*|anul\w*|abort\w*|deteng\w*|pare|suspend\w*)\b/;
+  var RE_PISTA_TRAMO = /\b(?:(?:la\s+)?pista|cabecera)\s+(?:en\s+(?:servicio|uso)\s+)?(?:la\s+)?(\d{1,2}[lrc]?)\b/;
+
+  function detectar(n, disp, ex) {
+    var cls = clausulas(n);
+    var items = [];
+    var incompleto = [];
+    var desconocido = [];
+    var marcas = { contacto: false, saludo: false, informacion: false };
+    var m, re;
+
+    function agregar(it) { it.fin = it.fin === undefined ? it.finT : it.fin; items.push(it); return it; }
+    function eco(ini, finT, tipo, canon, modo, extra) {
+      var it = { clase: "eco", ini: ini, finT: finT, tipo: tipo, canon: canon, modo: modo };
+      if (extra) for (var k in extra) if (tiene(extra, k)) it[k] = extra[k];
+      return agregar(it);
+    }
+    function atomo(ini, fin, tipo, texto, corta, extra) {
+      var it = { clase: "atomo", ini: ini, finT: fin, fin: fin, tipo: tipo, texto: texto, corta: corta };
+      if (extra) for (var k in extra) if (tiene(extra, k)) it[k] = extra[k];
+      return agregar(it);
+    }
+    function marca(ini, fin, cual) {
+      marcas[cual] = true;
+      return agregar({ clase: "marca", ini: ini, finT: fin, fin: fin, tipo: null, cual: cual });
+    }
+    function clausulaConTrafico(pos) { var c = clausulaEn(cls, pos); return /\btrafico\b/.test(n.slice(c.ini, c.fin)); }
+
+    /* --- Marcas: contacto, saludo, acuse / información --- */
+    re = /\b(?:adelante|prosiga|transmita|repita|diga)\b/g;
+    while ((m = re.exec(n)) !== null) marca(m.index, m.index + m[0].length, "contacto");
+    re = /\b(?:buen[oa]s\s+(?:dias|tardes|noches)|buenas(?:\s+de\s+nuevo)?|hola)\b/g;
+    while ((m = re.exec(n)) !== null) marca(m.index, m.index + m[0].length, "saludo");
+    re = /\b(?:recibido|copiado|correcto|afirmativo|negativo|repito|gracias|hasta\s+luego|identificado|contacto\s+radar|le\s+tengo\s+a\s+la\s+vista|a\s+la\s+vista|le\s+veo|datos\s+del\s+campo|informacion\s+de(?:l)?\s+(?:trafico|campo))\b/g;
+    while ((m = re.exec(n)) !== null) {
+      /* «llame con campo a la vista»: aquí «a la vista» es complemento de la instrucción, no un acuse */
+      if (/^a\s+la\s+vista$/.test(m[0]) && /\b(?:campo|aerodromo|aeropuerto|pista|trafico)\s+$/.test(n.slice(Math.max(0, m.index - 14), m.index))) continue;
+      marca(m.index, m.index + m[0].length, "informacion");
+    }
+
+    /* --- Autorizaciones e instrucciones (eco: se colacionan con su complemento) --- */
+    re = /\bpuesta\s+en\s+marcha(?:\s+(aprobada|autorizada|aprobado|autorizado))?\b/g;
+    while ((m = re.exec(n)) !== null) {
+      eco(m.index, m.index + m[0].length, "puesta_en_marcha", m[1] ? "puesta en marcha " + m[1].replace(/o$/, "a") : "puesta en marcha", "clausula");
+    }
+    re = /\bautorizad[oa]\s+(?:a\s+|para\s+)?rodar\b/g;
+    while ((m = re.exec(n)) !== null) eco(m.index, m.index + m[0].length, "rodaje", "autorizado a rodar", "clausula", { requiereLimite: true });
+    re = /\b(?:ruede|rueda)\b/g;
+    while ((m = re.exec(n)) !== null) eco(m.index, m.index + m[0].length, "rodaje", "rodaré", "clausula", { requiereLimite: true });
+    re = /\bcontinue\s+(?:el\s+)?rodaje\b/g;
+    while ((m = re.exec(n)) !== null) eco(m.index, m.index + m[0].length, "rodaje", "continúo rodaje", "clausula");
+    re = /\b(?:autorizad[oa]\s+(?:a\s+|para\s+)?cruzar|cruce)\b(?=[^,;:.]*\b(?:pista|cabecera)\b)/g;
+    while ((m = re.exec(n)) !== null) eco(m.index, m.index + m[0].length, "rodaje", "autorizado a cruzar", "pista", { requierePista: true });
+    re = /\babandone\b/g;
+    while ((m = re.exec(n)) !== null) eco(m.index, m.index + m[0].length, "rodaje", "abandonaré", "clausula");
+
+    re = /\bmanteng(?:a|ase)\s+(?:la\s+)?posicion\b/g;
+    while ((m = re.exec(n)) !== null) eco(m.index, m.index + m[0].length, "mantenga_posicion", "mantengo posición", "ninguno");
+    re = /\b(espere|mantenga|mantengase)\s+(fuera|antes|corto)\s+de\b(?=\s+(?:la\s+)?(?:pista|cabecera)\b)/g;
+    while ((m = re.exec(n)) !== null) {
+      var verboHs = m[1] === "espere" ? "espero" : (m[1] === "mantenga" ? "mantengo" : "me mantengo");
+      eco(m.index, m.index + m[0].length, "mantenga_posicion", verboHs + " " + m[2] + " de", "pista", { requierePista: true });
+    }
+    re = /\bespere\s+en\s+(?:el\s+)?punto\s+de\s+espera\b/g;
+    while ((m = re.exec(n)) !== null) eco(m.index, m.index + m[0].length, "mantenga_posicion", "espero en punto de espera", "clausula");
+
+    var backtrackConPista = [];
+    re = /\b(?:autorizad[oa]\s+(?:a\s+|para\s+)?)?entr(?:ar|e)\s+(?:(?:a|en)\s+)?(?:la\s+)?(?:pista|cabecera)\s+(\d{1,2}[lrc]?)\s+y\s+(?:hacer\s+|haga\s+)?(backtrack|retroceder|retroceda)\b/g;
+    while ((m = re.exec(n)) !== null) {
+      var pBt = pad(parseInt(m[1], 10), 2) + m[1].replace(/^\d+/, "").toUpperCase();
+      backtrackConPista.push({ ini: m.index, fin: m.index + m[0].length });
+      eco(m.index, m.index + m[0].length, "entrar_backtrack", "autorizado a entrar y " + (m[2] === "backtrack" ? "backtrack" : "retroceder") + " pista " + pBt, "ninguno", { requierePista: true });
+    }
+    re = /\b(?:autorizad[oa]\s+(?:a\s+|para\s+)?)?(?:entr(?:ar|e)\s+y\s+(?:hacer\s+|haga\s+)?)?(backtrack|retroceder|retroceda)\b/g;
+    while ((m = re.exec(n)) !== null) {
+      var yaCubiertoBt = false;
+      for (var ib = 0; ib < backtrackConPista.length; ib++) {
+        if (m.index >= backtrackConPista[ib].ini && m.index < backtrackConPista[ib].fin) { yaCubiertoBt = true; break; }
+      }
+      if (yaCubiertoBt) continue;
+      eco(m.index, m.index + m[0].length, "entrar_backtrack", "autorizado a entrar y " + (m[1] === "backtrack" ? "backtrack" : "retroceder"), "pista", { requierePista: true });
+    }
+    re = /\b(?:entre|alinee(?:se)?|autorizad[oa]\s+(?:a\s+|para\s+)?(?:entrar|alinear(?:se)?))\s+(?:(?:en|a)\s+(?:la\s+)?(?:pista|cabecera)\s+(?:\d{1,2}[lrc]?\s+)?)?y\s+(?:mantenga|espere|mantener|esperar)\b/g;
+    while ((m = re.exec(n)) !== null) {
+      if (/backtrack|retroced/.test(n.slice(m.index, clausulaEn(cls, m.index).fin))) continue;
+      var dentro = RE_PISTA_TRAMO.exec(m[0]);
+      eco(m.index, m.index + m[0].length, "entrar_cabecera", "entro y mantengo" + (dentro ? " pista " + pad(parseInt(dentro[1], 10), 2) + dentro[1].replace(/^\d+/, "").toUpperCase() : ""), dentro ? "ninguno" : "pista", { requierePista: true });
+    }
+    re = /\b(?:autorizad[oa]\s+(?:a\s+|para\s+)?entrar|entre)\b(?=\s+(?:(?:a|en)\s+)?(?:la\s+)?(?:cabecera|pista)\b)/g;
+    while ((m = re.exec(n)) !== null) {
+      var cEntr = clausulaEn(cls, m.index);
+      var restoEntr = n.slice(m.index, cEntr.fin);
+      if (/backtrack|retroced/.test(restoEntr) || /\by\s+(?:mantenga|espere|mantener|esperar)\b/.test(restoEntr)) continue;
+      eco(m.index, m.index + m[0].length, "entrar_cabecera", "autorizado a entrar", "pista", { requierePista: true });
+    }
+
+    re = /\bautorizad[oa]\s+(?:a\s+|para\s+)?(?:(?:un\s+)?(toque\s+y\s+(?:despegue|siga)|toma\s+y\s+despegue|tomas\s+y\s+despegues))\b/g;
+    while ((m = re.exec(n)) !== null) eco(m.index, m.index + m[0].length, "aterrizaje", "autorizado " + m[1].replace(/\s+/g, " "), "pista", { requierePista: true });
+    re = /\b(?:autorizad[oa]\s+(?:a\s+|para\s+)?(?:despegar|despegue|el\s+despegue)|despegue\s+autorizado)\b/g;
+    while ((m = re.exec(n)) !== null) eco(m.index, m.index + m[0].length, "despegue", "autorizado a despegar", "pista", { requierePista: true });
+    re = /\b(?:autorizad[oa]\s+(?:a\s+|para\s+)?aterrizar|aterrizaje\s+autorizado)\b/g;
+    while ((m = re.exec(n)) !== null) eco(m.index, m.index + m[0].length, "aterrizaje", "autorizado a aterrizar", "pista", { requierePista: true });
+
+    /* Ascenso / descenso: el imperativo siempre cuenta; el sustantivo suelto solo si le sigue una altitud
+       (así «notifique en ascenso» no se toma como instrucción de nivel). */
+    var SIGUE_ALTITUD = "(?=\\s+(?:y\\s+mantenga\\s+)?(?:(?:para|a|hasta)\\s+)?(?:(?:la\\s+)?altitud\\s+(?:de\\s+)?|(?:el\\s+)?nivel\\s+(?:de\\s+vuelo\\s+)?|fl\\s*)?\\d)";
+    re = new RegExp("\\b(?:continue\\s+(?:el\\s+|en\\s+)?ascenso|(?:autorizad[oa]|aprobad[oa])\\s+(?:el\\s+|al\\s+|a\\s+|para\\s+)?(?:ascenso|ascender)|ascienda|suba)\\b|(?:^|[^a-z])(ascenso)\\b" + SIGUE_ALTITUD, "g");
+    while ((m = re.exec(n)) !== null) {
+      var iniA = m[1] ? m.index + m[0].length - m[1].length : m.index;
+      if (m[1] && /\ben\s+$/.test(n.slice(Math.max(0, iniA - 4), iniA))) continue;
+      eco(iniA, m.index + m[0].length, "ascenso", "en ascenso para", "altitud");
+    }
+    re = new RegExp("\\b(?:continue\\s+(?:el\\s+|en\\s+)?descenso|(?:autorizad[oa]|aprobad[oa])\\s+(?:el\\s+|al\\s+|a\\s+|para\\s+)?(?:descenso|descender)|descienda|baje)\\b|(?:^|[^a-z])(descenso)\\b" + SIGUE_ALTITUD, "g");
+    while ((m = re.exec(n)) !== null) {
+      var iniD = m[1] ? m.index + m[0].length - m[1].length : m.index;
+      if (m[1] && /\ben\s+$/.test(n.slice(Math.max(0, iniD - 4), iniD))) continue;
+      eco(iniD, m.index + m[0].length, null, "en descenso para", "altitud", { sinTipo: true });
+    }
+    re = /\bmantenga\b(?=\s+(?:\d{3,5}\s*(?:ft|pies)|fl\s*\d|(?:la\s+)?altitud|(?:el\s+)?nivel\s+de\s+vuelo))/g;
+    while ((m = re.exec(n)) !== null) {
+      var antesMant = n.slice(clausulaEn(cls, m.index).ini, m.index);
+      if (/\b(?:ascienda|descienda|suba|baje|ascenso|descenso)\s+y\s+$/.test(antesMant)) continue;
+      eco(m.index, m.index + m[0].length, null, "mantengo", "altitud", { sinTipo: true });
+    }
+
+    var VERBO_NOTIFICAR = { notifique: "notificaré", informe: "informaré", llame: "llamaré", avise: "avisaré" };
+    re = /\b(notifique|informe|llame|avise)\b(?!\s+(?:(?:a|con|en)\s+(?:(?:la\s+)?frecuencia\b|1[0-3]\d\.\d|torre|aproximacion|control|radar|informacion|rodadura|tierra|plataforma|madrid|barcelona|sevilla|canarias|leon)|frecuencia\b|1[0-3]\d\.\d))/g;
+    while ((m = re.exec(n)) !== null) eco(m.index, m.index + m[0].length, "notifique", VERBO_NOTIFICAR[m[1]], "clausula", { requiereComplemento: true, notificacion: true });
+
+    re = /\b(?:autorizad[oa]\s+(?:a\s+|para\s+)?entrar|entre)\s+en\s+(?:el\s+)?circuito\b/g;
+    while ((m = re.exec(n)) !== null) eco(m.index, m.index + m[0].length, "circuito", "entraré en circuito", "clausula");
+    re = /\b(incorporese|integrese|extienda|prolongue|proceda)\b/g;
+    var VERBO_CIRCUITO = { incorporese: "me incorporaré", integrese: "me integraré", extienda: "extenderé", prolongue: "prolongaré", proceda: "procederé" };
+    while ((m = re.exec(n)) !== null) eco(m.index, m.index + m[0].length, "circuito", VERBO_CIRCUITO[m[1]], "clausula");
+    re = /\bsiga\b(?=\s+(?:al?|el|la|detras)\b)/g;
+    while ((m = re.exec(n)) !== null) eco(m.index, m.index + m[0].length, "circuito", "seguiré", "clausula");
+    re = /\b(haga|efectue|realice)\s+((?:un\s+|una\s+)?(?:orbita|360|giro\s+de\s+360))\b/g;
+    var VERBO_HAGA = { haga: "haré", efectue: "efectuaré", realice: "realizaré" };
+    while ((m = re.exec(n)) !== null) eco(m.index, m.index + m[0].length, "circuito", VERBO_HAGA[m[1]] + " " + formatearEco(disp.slice(m.index + m[1].length, m.index + m[0].length)), "clausula");
+    re = /\b(?:viento\s+en\s+cola|base\s+(?:izquierda|derecha)|tramo\s+(?:base|final|de\s+viento\s+en\s+cola))\b/g;
+    while ((m = re.exec(n)) !== null) {
+      if (clausulaConTrafico(m.index)) continue;
+      /* Forma parte del complemento de otra instrucción («notifique en viento en cola», «entre en circuito…») */
+      if (/\b(?:notifique|llame|informe|avise|entr(?:e|ar)\s+en|incorporese|integrese|proceda|extienda|prolongue|siga|detras|despues)\b/.test(n.slice(clausulaEn(cls, m.index).ini, m.index))) continue;
+      eco(m.index, m.index + m[0].length, "circuito", formatearEco(disp.slice(m.index, m.index + m[0].length)), "clausula", { posicionCircuito: true });
+    }
+    re = /\bnumero\s+(\d)\b/g;
+    while ((m = re.exec(n)) !== null) atomo(m.index, m.index + m[0].length, "circuito", "número " + m[1], true);
+
+    re = /\b(?:detras|despues)\s+del?\b/g;
+    while ((m = re.exec(n)) !== null) eco(m.index, m.index + m[0].length, null, formatearEco(disp.slice(m.index, m.index + m[0].length)), "clausula", { sinTipo: true, condicional: true });
+
+    /* --- Elementos atómicos (datos de colación obligatoria y otras instrucciones) --- */
+    re = /\b(?:(?:espere|esperen)\s+(?:la\s+)?)?pista\s+en\s+(?:servicio|uso)\b/g;
+    while ((m = re.exec(n)) !== null) {
+      var finPs = m.index + m[0].length;
+      var rp = /^\s+(?:la\s+)?(\d{1,2})([lrc])?\b/.exec(n.slice(finPs));
+      if (rp && parseInt(rp[1], 10) >= 1 && parseInt(rp[1], 10) <= 36) {
+        atomo(m.index, finPs + rp[0].length, "pista_en_servicio", "pista " + pad(parseInt(rp[1], 10), 2) + (rp[2] ? rp[2].toUpperCase() : ""), true);
+      } else {
+        atomo(m.index, finPs, "pista_en_servicio", null, true);
+        incompleto.push("pista");
+      }
+    }
+    re = /\b(?:la\s+)?pista\s+(\d{1,2})([lrc])?\b/g;
+    while ((m = re.exec(n)) !== null) {
+      var npx = parseInt(m[1], 10);
+      if (npx < 1 || npx > 36 || clausulaConTrafico(m.index)) continue;
+      atomo(m.index, m.index + m[0].length, null, "pista " + pad(npx, 2) + (m[2] ? m[2].toUpperCase() : ""), false, { dato: true });
+    }
+    re = /\b(?:(?:via|por)\s+)?(?:la\s+)?calles?\s+(?:de\s+rodaje\s+)?/g;
+    while ((m = re.exec(n)) !== null) {
+      var lcl = leerCalles(n, m.index + m[0].length);
+      if (!lcl.codigos.length || clausulaConTrafico(m.index)) continue;
+      atomo(m.index, lcl.fin, null, formatearEco(disp.slice(m.index, lcl.fin)), false, { dato: true });
+      re.lastIndex = Math.max(re.lastIndex, lcl.fin);
+    }
+    re = /\b(?:qnh\s*(\d{2})\s+(\d{2})\b|qnh\s*(\d{1,5})\b|q\s?(\d{4})\b)/g;
+    while ((m = re.exec(n)) !== null) {
+      var sQ = m[1] ? m[1] + m[2] : (m[3] || m[4]);
+      var vQ = parseInt(sQ, 10);
+      if (sQ.length >= 3 && sQ.length <= 4 && vQ >= 850 && vQ <= 1099) atomo(m.index, m.index + m[0].length, null, "QNH " + vQ, true, { dato: true });
+    }
+    re = /\bnivel\s+de\s+transicion\s+(\d{2,3})\b/g;
+    while ((m = re.exec(n)) !== null) atomo(m.index, m.index + m[0].length, null, "nivel de transición " + parseInt(m[1], 10), true, { dato: true });
+    re = /\b(?:vuele\s+|mantenga\s+|siga\s+)?(?:(?:vire|gire)\s+(?:(?:a|por|hacia)\s+(?:la\s+)?)?(?:izquierda|derecha)\s+)?(?:(?:al|a)\s+)?rumbo\s+(\d{3})\b/g;
+    while ((m = re.exec(n)) !== null) atomo(m.index, m.index + m[0].length, null, formatearEco(disp.slice(m.index, m.index + m[0].length)).replace(/^vuele\s+/, "").replace(/^mantenga\s+/, "mantengo ").replace(/^siga\s+/, "sigo ").replace(/^(vire|gire)\s+/, "viraré "), true, { sinTipo: true });
+    re = /\b(?:(mantenga|reduzca|aumente|incremente)\s+(?:la\s+)?)?velocidad\s+(?:a\s+)?(\d{2,3})(?:\s*(?:nudos|kt))?\b/g;
+    while ((m = re.exec(n)) !== null) atomo(m.index, m.index + m[0].length, null, "velocidad " + parseInt(m[2], 10) + " KT", true, { sinTipo: true });
+
+    var hayClaveTransp = false;
+    re = /\b(?:transpondedor|squawk|codigo\s+ssr|codigo|responda)\s+(?:codigo\s+)?(?:ssr\s+)?(\d{3,5})\b/g;
+    while ((m = re.exec(n)) !== null) {
+      if (/^[0-7]{4}$/.test(m[1])) atomo(m.index, m.index + m[0].length, "transpondedor", "transpondedor " + m[1], true);
+    }
+    re = /\b(?:(?:transpondedor|squawk)\s+(?:en\s+)?)?(?:modo\s+(charlie|c|sierra|s|alfa|a)|(ident)|(standby|en\s+espera))\b|\bidentifique\b/g;
+    while ((m = re.exec(n)) !== null) {
+      if (!/^(?:transpondedor|squawk|modo|ident|identifique)/.test(m[0])) continue;
+      var textoT = m[1] ? "transpondedor modo " + (FONETICO[m[1]] || m[1].toUpperCase()) : (m[3] ? "transpondedor en espera" : "ident");
+      if (m[3] && !/^(?:transpondedor|squawk)/.test(m[0])) continue;
+      atomo(m.index, m.index + m[0].length, "transpondedor", textoT, true);
+      hayClaveTransp = true;
+    }
+    if (/\b(?:transpondedor|squawk|codigo\s+ssr)\b/.test(n) && !ex.datos.squawk && !hayClaveTransp) incompleto.push("transpondedor");
+    if (ex.ilegible.squawk) incompleto.push("transpondedor");
+
+    var hayFrecuencia = false;
+    re = /\b(1[0-3]\d)\.(\d{1,3})\b/g;
+    while ((m = re.exec(n)) !== null) {
+      var vf = parseInt(m[1], 10);
+      if (vf < 108 || vf > 137) continue;
+      var cF = clausulaEn(cls, m.index);
+      var previoF = n.slice(cF.ini, m.index);
+      var disparo = /\b(?:pase|cambie|contacte|llame|contacto|monitorice|escuche|frecuencia)\b/.exec(previoF);
+      atomo(disparo ? cF.ini + disparo.index : m.index, m.index + m[0].length, "cambio_frecuencia", "frecuencia " + m[1] + "." + m[2], true);
+      hayFrecuencia = true;
+    }
+    re = /\bfrecuencia\s+(1[0-3]\d)\s?(\d{2,3})\b/g;
+    while (!hayFrecuencia && (m = re.exec(n)) !== null) {
+      atomo(m.index, m.index + m[0].length, "cambio_frecuencia", "frecuencia " + m[1] + "." + m[2], true);
+      hayFrecuencia = true;
+    }
+    re = /\b(?:cambio\s+de\s+frecuencia\s+(?:aprobado|autorizado)|(?:aprobado|autorizado)\s+(?:el\s+)?cambio\s+de\s+frecuencia)\b/g;
+    var cambioAprobado = false;
+    while ((m = re.exec(n)) !== null) { atomo(m.index, m.index + m[0].length, "cambio_frecuencia", "cambio de frecuencia aprobado", true); cambioAprobado = true; }
+    if (!hayFrecuencia && !cambioAprobado && /\b(?:pase\s+a|cambie\s+a|contacte|contacto\s+en|frecuencia|monitorice)\b/.test(n)) incompleto.push("frecuencia");
+
+    re = /\b(?:(?:aprobado|autorizado)\s+)?viraje\s+(?:(?:a|por|hacia)\s+(?:la\s+)?)?(?:izquierda|derecha)\b/g;
+    while ((m = re.exec(n)) !== null) atomo(m.index, m.index + m[0].length, null, formatearEco(disp.slice(m.index, m.index + m[0].length)), true, { dato: true });
+    re = /\b(vire|gire)\s+(?:(?:a|por|hacia)\s+(?:la\s+)?)?(izquierda|derecha)\b(?!\s+(?:al?\s+)?rumbo)/g;
+    while ((m = re.exec(n)) !== null) atomo(m.index, m.index + m[0].length, null, "viraré a la " + m[2], true, { sinTipo: true });
+
+    /* --- Restos de las instrucciones eco --- */
+    items.sort(function (a, b) { return a.ini - b.ini || b.finT - a.finT; });
+    items.forEach(function (it) {
+      if (it.clase !== "eco") return;
+      var c = clausulaEn(cls, it.ini);
+      var limite = c.fin;
+      items.forEach(function (o) {
+        if (o === it || o.ini < it.finT || o.ini >= limite) return;
+        if (o.clase === "eco" || o.clase === "marca" || (o.clase === "atomo" && o.corta)) limite = o.ini;
+      });
+      RE_METEO.lastIndex = it.finT;
+      var mm = RE_METEO.exec(n);
+      if (mm && mm.index < limite) limite = mm.index;
+      var reY = /\by\s+([a-z]+)\b/g, my;
+      reY.lastIndex = it.finT;
+      while ((my = reY.exec(n)) !== null && my.index < limite) {
+        if (it.modo === "altitud" && my[1] === "mantenga") continue; /* «ascienda y mantenga 4500 pies» */
+        if (tiene(IMPERATIVOS, my[1])) { limite = my.index; break; }
+      }
+      if (limite < it.finT) limite = it.finT;
+      it.fin = limite;
+      var restoTexto = "";
+      if (it.modo === "clausula") {
+        restoTexto = formatearEco(disp.slice(it.finT, limite));
+      } else if (it.modo === "pista") {
+        var tramo = n.slice(it.finT, limite);
+        var mp = RE_PISTA_TRAMO.exec(tramo);
+        if (mp) { it.fin = it.finT + mp.index + mp[0].length; }
+        restoTexto = formatearEco(disp.slice(it.finT, it.fin));
+      } else if (it.modo === "altitud") {
+        var alt = leerAltitud(n, it.finT, limite);
+        if (alt) { it.fin = alt.fin; restoTexto = alt.texto; it.altitud = alt.texto; }
+        else { it.fin = it.finT; incompleto.push("altitud"); }
+      } else {
+        it.fin = it.finT;
+      }
+      if (it.notificacion) restoTexto = colapsarAlternativas(restoTexto);
+      if (it.requiereComplemento && !restoTexto) incompleto.push("notificación");
+      if (it.notificacion && /\b(?:base|final|viento en cola|tramo)\b/.test(plano(restoTexto))) it.tipoExtra = "circuito";
+      it.resto = restoTexto;
+      it.texto = (it.canon + (restoTexto ? " " + restoTexto : "")).trim();
+    });
+
+    /* Alternativas de la torre con el mismo sentido («extienda o prolongue…», «notifique o llame…»):
+       se colaciona una sola instrucción, con el primer verbo y el complemento común. */
+    var ecosOrden = items.filter(function (it) { return it.clase === "eco"; }).sort(function (a, b) { return a.ini - b.ini; });
+    for (var ia = 0; ia + 1 < ecosOrden.length; ia++) {
+      var ea = ecosOrden[ia], eb = ecosOrden[ia + 1];
+      if (ea.descartar || !(ea.tipo === eb.tipo || (ea.notificacion && eb.notificacion))) continue;
+      if (plano(n.slice(ea.finT, eb.ini)).replace(/[^a-z]+/g, " ").trim() !== "o") continue;
+      ea.fin = eb.fin;
+      ea.resto = eb.resto;
+      ea.texto = (ea.canon + (eb.resto ? " " + eb.resto : "")).trim();
+      if (eb.tipoExtra) ea.tipoExtra = eb.tipoExtra;
+      eb.descartar = true;
+    }
+    items = items.filter(function (it) { return !it.descartar; });
+
+    /* Átomos absorbidos por el complemento de una instrucción eco */
+    items = items.filter(function (a) {
+      if (a.clase !== "atomo" || a.corta) return true;
+      for (var i = 0; i < items.length; i++) {
+        var e = items[i];
+        if (e.clase === "eco" && a.ini >= e.ini && a.fin <= e.fin) return false;
+      }
+      return true;
+    });
+    /* Átomos solapados (p. ej. «pista 23» dentro de «pista en servicio 23») */
+    items = items.filter(function (a) {
+      if (a.clase !== "atomo") return true;
+      for (var i = 0; i < items.length; i++) {
+        var b = items[i];
+        if (b === a || b.clase === "marca") continue;
+        if (b.ini <= a.ini && b.fin >= a.fin && (b.fin - b.ini) > (a.fin - a.ini)) return false;
+      }
+      return true;
+    });
+
+    /* --- Cobertura: ¿queda alguna instrucción sin interpretar? --- */
+    var cubierto = new Array(n.length);
+    items.forEach(function (it) { for (var k = it.ini; k < it.fin; k++) cubierto[k] = true; });
+    cls.forEach(function (c) {
+      var resto = "";
+      for (var k = c.ini; k < c.fin; k++) resto += cubierto[k] ? " " : n.charAt(k);
+      var limpio = resto.replace(/[^a-z0-9\/.+]+/g, " ").replace(/\s+/g, " ").trim();
+      if (!limpio) return;
+      if (/^espere(?:\s+(?:instrucciones|un\s+momento|llamada|en\s+(?:esta\s+)?frecuencia))?$/.test(limpio)) { marcas.informacion = true; return; }
+      var palabras = limpio.split(" ");
+      for (var i = 0; i < palabras.length; i++) {
+        if (tiene(IMPERATIVOS, palabras[i])) { desconocido.push(disp.slice(c.ini, c.fin).trim()); return; }
+      }
+      if (/\btrafico\b/.test(limpio)) marcas.informacion = true;
+    });
+    /* Autorización con negación o cancelación en la misma cláusula: no se sugiere colación */
+    items.forEach(function (it) {
+      if (it.clase !== "eco" || !it.tipo || it.tipo === "notifique" || it.tipo === "circuito") return;
+      var c = clausulaEn(cls, it.ini);
+      if (RE_NEGACION.test(n.slice(c.ini, c.fin))) desconocido.push(disp.slice(c.ini, c.fin).trim());
+    });
+
+    var elementos = items.filter(function (it) { return it.clase !== "marca" && it.texto; })
+      .sort(function (a, b) { return a.ini - b.ini; });
+    return { items: items, elementos: elementos, incompleto: incompleto, desconocido: desconocido, marcas: marcas };
+  }
+
+  /* ======================= Análisis completo ======================= */
+  function analizar(texto, indicativo) {
+    var base = prepararTexto(texto);
+    if (!base.n) {
+      return { dirigidoAMi: false, reconocida: false, tipo: null, tipos: [], datos: datosVacios(), sugerencia: null, motivo: "Texto vacío: no hay nada que analizar." };
+    }
+    var tramos = buscarIndicativo(base.n, indicativo);
+    if (!tramos.length) {
+      return {
+        dirigidoAMi: false, reconocida: false, tipo: null, tipos: [], datos: datosVacios(), sugerencia: null,
+        motivo: "No dirigido a " + indicativo + ": sin sugerencia y sin cambios en el panel."
+      };
+    }
+    var n = base.n, disp = base.disp;
+    tramos.forEach(function (t) { n = blanquear(n, t.ini, t.fin); disp = blanquear(disp, t.ini, t.fin); });
+
+    /* Transmisión encadenada a varias aeronaves («IBERIA 3254, autorizado a despegar…, EC-DOG, mantenga posición»):
+       lo que va delante de nuestro indicativo, tras otro indicativo, es para la otra aeronave y no se aplica. */
+    var prefijo = n.slice(0, tramos[0].ini);
+    var mOtro = RE_OTRO_INDICATIVO.exec(prefijo);
+    if (mOtro && !tiene(NO_INDICATIVO_PREFIJO, mOtro[1] || "")) {
+      n = blanquear(n, 0, tramos[0].ini);
+      disp = blanquear(disp, 0, tramos[0].ini);
+      if (!/[a-z0-9]/.test(n)) {
+        return {
+          dirigidoAMi: false, reconocida: false, tipo: null, tipos: [], datos: datosVacios(), sugerencia: null,
+          motivo: "La instrucción va para otra aeronave; no queda nada dirigido a " + indicativo + " con seguridad."
+        };
+      }
+    }
+
+    var ex = extraerDatos(n, disp);
+    var det = detectar(n, disp, ex);
+    var datos = ex.datos;
+
+    var tipos = [];
+    det.items.slice().sort(function (a, b) { return a.ini - b.ini; }).forEach(function (it) {
+      if (it.clase === "marca") return;
+      if (it.tipo && tipos.indexOf(it.tipo) < 0) tipos.push(it.tipo);
+      if (it.tipoExtra && tipos.indexOf(it.tipoExtra) < 0) tipos.push(it.tipoExtra);
+    });
+    var requierePista = det.items.some(function (it) { return it.requierePista; });
+    if (requierePista && !datos.pista) det.incompleto.push("pista");
+    if (ex.ilegible.pista) det.incompleto.push("pista");
+    if (ex.ilegible.qnh) det.incompleto.push("QNH");
+    det.items.forEach(function (it) {
+      if (it.requiereLimite && !it.resto && !datos.pista && !datos.punto && !datos.calles.length) det.incompleto.push("límite de rodaje");
+    });
+
+    var instrucciones = tipos.filter(function (t) { return t !== "contacto" && t !== "informacion"; });
+    var sinTipo = det.items.some(function (it) { return it.sinTipo; });
+    var reconocida = true, motivo = null, sugerencia = null;
+
+    if (det.desconocido.length || (sinTipo && !instrucciones.length)) {
+      reconocida = false;
+      if (tipos.indexOf("otro") < 0) tipos.push("otro");
+      var frase = det.desconocido.length ? det.desconocido[0] : det.items.filter(function (it) { return it.sinTipo; })[0].texto;
+      motivo = "No reconocido: instrucción fuera de las reconocidas («" + frase + "»). No se sugiere colación; pida repetición.";
+    }
+    if (det.incompleto.length) {
+      reconocida = false;
+      var faltan = det.incompleto.filter(function (x, i, a) { return a.indexOf(x) === i; });
+      if (faltan.indexOf("transpondedor") >= 0 && tipos.indexOf("transpondedor") < 0) tipos.push("transpondedor");
+      if (faltan.indexOf("frecuencia") >= 0 && tipos.indexOf("cambio_frecuencia") < 0) tipos.push("cambio_frecuencia");
+      motivo = "No reconocido: falta o no se lee un dato obligatorio (" + faltan.join(", ") + "). No se completa por suposición.";
+    }
+
+    if (!tipos.length) {
+      if (!reconocida) tipos.push("otro");
+      else if (det.elementos.length) tipos.push("informacion");
+      else if (det.marcas.contacto || det.marcas.saludo) tipos.push("contacto");
+      else if (/[a-z0-9]/.test(n)) tipos.push("informacion");
+      else tipos.push("contacto");
+    }
+    if (det.marcas.contacto && !instrucciones.length && !det.elementos.length && reconocida) tipos = ["contacto"];
+
+    var ordenados = tipos.slice().sort(function (a, b) { return PRIORIDAD.indexOf(a) - PRIORIDAD.indexOf(b); });
+    var tipo = ordenados[0] || null;
+
+    if (!reconocida) {
+      sugerencia = "Repita, " + indicativo;
+    } else if (det.elementos.length) {
+      var vistos = [];
+      var textos = [];
+      det.elementos.forEach(function (e) {
+        var t = e.texto.replace(/[\s,;:.]+$/, "");
+        if (t && vistos.indexOf(t.toLowerCase()) < 0) { vistos.push(t.toLowerCase()); textos.push(t); }
+      });
+      var cuerpo = textos.join(", ");
+      sugerencia = cuerpo.charAt(0).toUpperCase() + cuerpo.slice(1) + ". " + indicativo + ".";
+      var alPanel = [];
+      if (datos.viento) alPanel.push("viento");
+      if (datos.visibilidad) alPanel.push("visibilidad");
+      if (datos.nubes) alPanel.push("nubes");
+      if (datos.temperatura !== null || datos.rocio !== null) alPanel.push("temperatura");
+      motivo = "Colación sugerida (AESA / SERA.8015 e). Verifique con la escucha directa." +
+        (alPanel.length ? " Al panel, sin colacionar: " + alPanel.join(", ") + "." : "");
+    } else if (tipo === "contacto") {
+      sugerencia = null;
+      motivo = "Contacto: sin colación; puede transmitir su solicitud.";
+    } else {
+      sugerencia = "Recibido. " + indicativo + ".";
+      motivo = "Solo información: basta con acusar recibo.";
+    }
+
+    return { dirigidoAMi: true, reconocida: reconocida, tipo: tipo, tipos: tipos, datos: datos, sugerencia: sugerencia, motivo: motivo };
+  }
+
+  /* ======================= Estado y almacenamiento ======================= */
+  function leerLocal(clave) { try { return window.localStorage.getItem(clave); } catch (e) { return null; } }
+  function escribirLocal(clave, valor) { try { window.localStorage.setItem(clave, valor); return true; } catch (e) { return false; } }
+
+  /* Solo se acepta un indicativo guardado tal como lo guarda configurar() (ya normalizado); si está dañado, EC-DOG. */
+  var indicativoGuardado = leerLocal(CLAVES.indicativo);
+  var indicativo = (indicativoGuardado && normalizarIndicativo(indicativoGuardado) === indicativoGuardado) ? indicativoGuardado : INDICATIVO_DEFECTO;
+  var panel = cargarPanel();
+  var registro = cargarRegistro();
+  var indiceDemo = 0;
+
+  function numeroAlmacenado(v) { return typeof v === "number" && isFinite(v); }
+  function textoAlmacenado(v) { return typeof v === "string" ? v : null; }
+
+  /* El almacenamiento local es entrada no confiable: puede estar incompleto, editado o corrupto.
+     Se reconstruye el estado con los tipos esperados para que un dato dañado no impida arrancar. */
+  function limpiarDatos(g) {
+    var d = datosVacios();
+    if (!g || typeof g !== "object" || Array.isArray(g)) return d;
+    if (numeroAlmacenado(g.qnh)) d.qnh = g.qnh;
+    if (numeroAlmacenado(g.temperatura)) d.temperatura = g.temperatura;
+    if (numeroAlmacenado(g.rocio)) d.rocio = g.rocio;
+    ["pista", "visibilidad", "nubes", "atis", "squawk", "frecuencia", "punto", "altitud", "viraje"].forEach(function (c) {
+      var v = textoAlmacenado(g[c]);
+      if (v !== null) d[c] = v;
+    });
+    if (Array.isArray(g.calles)) d.calles = g.calles.filter(function (v) { return typeof v === "string"; }).slice(0, 20);
+    var v = g.viento;
+    if (v && typeof v === "object" && !Array.isArray(v) && numeroAlmacenado(v.velocidad) &&
+        (v.direccion === null || v.direccion === "VRB" || numeroAlmacenado(v.direccion)) && (v.unidad === "KT" || v.unidad === "MPS")) {
+      d.viento = { direccion: v.direccion, velocidad: v.velocidad, unidad: v.unidad };
+      if (numeroAlmacenado(v.rachas)) d.viento.rachas = v.rachas;
+    }
+    return d;
+  }
+  function limpiarEntrada(e) {
+    if (!e || typeof e !== "object" || Array.isArray(e)) return null;
+    var tipo = typeof e.tipo === "string" && PRIORIDAD.indexOf(e.tipo) >= 0 ? e.tipo : null;
+    var tipos = Array.isArray(e.tipos) ? e.tipos.filter(function (t, i, a) {
+      return typeof t === "string" && PRIORIDAD.indexOf(t) >= 0 && a.indexOf(t) === i;
+    }) : [];
+    return {
+      hora: typeof e.hora === "string" ? e.hora : "--:--:--",
+      fecha: typeof e.fecha === "string" && !isNaN(Date.parse(e.fecha)) ? e.fecha : null,
+      indicativo: normalizarIndicativo(e.indicativo) || INDICATIVO_DEFECTO,
+      origen: e.origen === "voz" || e.origen === "demo" ? e.origen : "manual",
+      texto: typeof e.texto === "string" ? e.texto : "",
+      dirigidoAMi: e.dirigidoAMi === true,
+      reconocida: e.reconocida === true,
+      tipo: tipo,
+      tipos: tipos,
+      datos: limpiarDatos(e.datos),
+      sugerencia: typeof e.sugerencia === "string" ? e.sugerencia : null,
+      motivo: typeof e.motivo === "string" ? e.motivo : null
+    };
+  }
+  function cargarPanel() {
+    try { return limpiarDatos(JSON.parse(leerLocal(CLAVES.datos) || "null")); }
+    catch (e) { return datosVacios(); }
+  }
+  function cargarRegistro() {
+    try {
+      var g = JSON.parse(leerLocal(CLAVES.registro) || "[]");
+      if (!Array.isArray(g)) return [];
+      return g.slice(-MAX_REGISTRO).map(limpiarEntrada).filter(function (e) { return e !== null; });
+    } catch (e) { return []; }
+  }
+  function guardarPanel() { escribirLocal(CLAVES.datos, JSON.stringify(panel)); }
+  function guardarRegistro() { escribirLocal(CLAVES.registro, JSON.stringify(registro)); }
+
+  function fusionarPanel(nuevos) {
+    CAMPOS.forEach(function (c) {
+      var v = nuevos[c];
+      if (c === "calles") { if (Array.isArray(v) && v.length) panel.calles = v.slice(); }
+      else if (v !== null && v !== undefined) panel[c] = copiar(v);
+    });
+  }
+
+  /* ======================= Presentación ======================= */
+  var $ = function (id) { return document.getElementById(id); };
+
+  function textoViento(v) {
+    if (!v) return "—";
+    if (v.direccion === null) return "Calma";
+    var dir = v.direccion === "VRB" ? "VRB" : pad(v.direccion, 3) + "\u00b0";
+    return dir + " / " + v.velocidad + " " + v.unidad + (v.rachas ? " (rachas " + v.rachas + ")" : "");
+  }
+  function textoTemperatura(t, r) {
+    if (t === null && r === null) return "—";
+    return (t === null ? "—" : t + "\u00b0") + " / " + (r === null ? "—" : r + "\u00b0");
+  }
+  function valorPanel(campo, d) {
+    var v = d[campo];
+    if (campo === "viento") return textoViento(v);
+    if (campo === "temperatura") return textoTemperatura(d.temperatura, d.rocio);
+    if (campo === "calles") return v && v.length ? v.join(", ") : "—";
+    return v === null || v === undefined || v === "" ? "—" : String(v);
+  }
+  function resumenDatos(d) {
+    var partes = [];
+    if (d.qnh !== null) partes.push("QNH " + d.qnh);
+    if (d.pista) partes.push("Pista " + d.pista);
+    if (d.viento) partes.push("Viento " + textoViento(d.viento));
+    if (d.visibilidad) partes.push("Visibilidad " + d.visibilidad);
+    if (d.nubes) partes.push("Nubes " + d.nubes);
+    if (d.temperatura !== null || d.rocio !== null) partes.push("Temp./rocío " + textoTemperatura(d.temperatura, d.rocio));
+    if (d.atis) partes.push("ATIS " + d.atis);
+    if (d.squawk) partes.push("Transpondedor " + d.squawk);
+    if (d.frecuencia) partes.push("Frecuencia " + d.frecuencia);
+    if (d.punto) partes.push("Punto " + d.punto);
+    if (d.altitud) partes.push("Altitud " + d.altitud);
+    if (d.calles && d.calles.length) partes.push("Calles " + d.calles.join(", "));
+    if (d.viraje) partes.push("Viraje " + d.viraje);
+    return partes.length ? partes.join(" · ") : "—";
+  }
+
+  function pintarPanel() {
+    ["qnh", "pista", "viento", "visibilidad", "nubes", "temperatura", "atis", "squawk", "frecuencia", "punto", "altitud", "calles", "viraje"]
+      .forEach(function (c) { $("dato-" + c).textContent = valorPanel(c, panel); });
+  }
+
+  /* Escribe texto plano y evita que el indicativo se parta en «EC-» / «DOG» (el textContent no cambia). */
+  function escribirSinCortar(el, texto, ind) {
+    while (el.firstChild) el.removeChild(el.firstChild);
+    var s = String(texto), i = ind ? s.indexOf(ind) : -1, desde = 0;
+    while (i >= 0) {
+      if (i > desde) el.appendChild(document.createTextNode(s.slice(desde, i)));
+      var span = document.createElement("span");
+      span.className = "sin-corte";
+      span.textContent = ind;
+      el.appendChild(span);
+      desde = i + ind.length;
+      i = s.indexOf(ind, desde);
+    }
+    if (desde < s.length) el.appendChild(document.createTextNode(s.slice(desde)));
+  }
+
+  function pintarUltimo(e) {
+    var bloqueM = $("bloque-mensaje"), bloqueS = $("bloque-sugerencia");
+    var destino = $("mensaje-destino");
+    bloqueS.classList.remove("norec", "contacto", "nodirigida", "atenuado");
+    if (!e) {
+      bloqueM.classList.remove("atenuado");
+      destino.className = "etiqueta no";
+      destino.textContent = "SIN MENSAJES";
+      $("mensaje-texto").textContent = "—";
+      bloqueS.classList.add("nodirigida");
+      $("sugerencia-texto").textContent = "—";
+      $("sugerencia-tipo").textContent = "";
+      $("sugerencia-motivo").textContent = "";
+      return;
+    }
+    bloqueM.classList.toggle("atenuado", !e.dirigidoAMi);
+    destino.className = "etiqueta " + (e.dirigidoAMi ? "si" : "no");
+    destino.textContent = (e.dirigidoAMi ? "PARA " : "NO DIRIGIDO A ") + e.indicativo + " · " + e.hora;
+    escribirSinCortar($("mensaje-texto"), e.texto, e.indicativo);
+    var sug;
+    if (!e.dirigidoAMi) {
+      bloqueS.classList.add("nodirigida", "atenuado");
+      sug = "Sin sugerencia: el mensaje no va dirigido a " + e.indicativo + ".";
+    } else if (!e.reconocida) {
+      bloqueS.classList.add("norec");
+      sug = "no reconocido, pide repetir: \"" + e.sugerencia + "\"";
+    } else if (e.sugerencia === null) {
+      bloqueS.classList.add("contacto");
+      sug = "Sin colación: puede transmitir su solicitud";
+    } else {
+      sug = e.sugerencia;
+    }
+    escribirSinCortar($("sugerencia-texto"), sug, e.indicativo);
+    var otros = (e.tipos || []).filter(function (t) { return t !== e.tipo; });
+    $("sugerencia-tipo").textContent = e.dirigidoAMi && e.tipo ? "Tipo: " + e.tipo + (otros.length ? " · también: " + otros.join(", ") : "") : "";
+    $("sugerencia-motivo").textContent = e.motivo || "";
+  }
+
+  function pintarRegistro() {
+    var lista = $("lista-registro");
+    while (lista.firstChild) lista.removeChild(lista.firstChild);
+    $("registro-vacio").classList.toggle("oculto", registro.length > 0);
+    var desde = Math.max(0, registro.length - 200);
+    for (var i = registro.length - 1; i >= desde; i--) {
+      var e = registro[i];
+      var li = document.createElement("li");
+      if (!e.dirigidoAMi) li.className = "atenuado";
+      var cab = document.createElement("div");
+      cab.className = "cab";
+      cab.textContent = e.hora + " · " + (e.dirigidoAMi ? "PARA " + e.indicativo : "OTRO DESTINATARIO") +
+        (e.tipo ? " · " + e.tipo : "") + (e.dirigidoAMi && !e.reconocida ? " · NO RECONOCIDO" : "") + (e.origen ? " · " + e.origen : "");
+      var txt = document.createElement("p");
+      txt.className = "txt";
+      txt.textContent = e.texto;
+      var dat = document.createElement("p");
+      dat.className = "nota";
+      dat.textContent = "Datos: " + resumenDatos(e.datos || datosVacios());
+      li.appendChild(cab);
+      li.appendChild(txt);
+      li.appendChild(dat);
+      if (e.dirigidoAMi) {
+        var sug = document.createElement("p");
+        sug.className = "sug";
+        sug.textContent = "Sugerencia: " + (e.sugerencia === null ? "sin colación" : e.sugerencia);
+        li.appendChild(sug);
+      }
+      lista.appendChild(li);
+    }
+  }
+
+  function horaLocal(f) { return pad(f.getHours(), 2) + ":" + pad(f.getMinutes(), 2) + ":" + pad(f.getSeconds(), 2); }
+
+  /* ======================= Proceso (mismo flujo para manual, voz, demo y gancho) ======================= */
+  function procesar(texto, origen) {
+    var limpio = String(texto === undefined || texto === null ? "" : texto).replace(/\s+/g, " ").trim();
+    var res = analizar(limpio, indicativo);
+    if (!limpio) return copiar(res);
+    if (res.dirigidoAMi) {
+      fusionarPanel(res.datos);
+      guardarPanel();
+      pintarPanel();
+    }
+    var ahora = new Date();
+    var entrada = {
+      hora: horaLocal(ahora),
+      fecha: ahora.toISOString(),
+      indicativo: indicativo,
+      origen: origen || "manual",
+      texto: limpio,
+      dirigidoAMi: res.dirigidoAMi,
+      reconocida: res.reconocida,
+      tipo: res.tipo,
+      tipos: res.tipos.slice(),
+      datos: copiar(res.datos),
+      sugerencia: res.sugerencia,
+      motivo: res.motivo
+    };
+    registro.push(entrada);
+    if (registro.length > MAX_REGISTRO) registro = registro.slice(-MAX_REGISTRO);
+    guardarRegistro();
+    pintarRegistro();
+    pintarUltimo(entrada);
+    return copiar(res);
+  }
+
+  function configurar(opciones) {
+    var valor = opciones && typeof opciones === "object" ? opciones.indicativo : opciones;
+    var nuevo = normalizarIndicativo(valor);
+    if (!nuevo) {
+      $("estado-indicativo").textContent = "Indicativo no válido. Use letras y números, por ejemplo EC-DOG.";
+      return null;
+    }
+    indicativo = nuevo;
+    escribirLocal(CLAVES.indicativo, indicativo);
+    $("campo-indicativo").value = indicativo;
+    $("estado-indicativo").textContent = "Indicativo activo: " + indicativo + " (guardado en este dispositivo).";
+    return indicativo;
+  }
+
+  function reset() {
+    panel = datosVacios();
+    registro = [];
+    indiceDemo = 0;
+    guardarPanel();
+    guardarRegistro();
+    pintarPanel();
+    pintarRegistro();
+    pintarUltimo(null);
+    pintarDemo();
+  }
+
+  /* ======================= Demo ======================= */
+  function pintarDemo(extra) {
+    $("estado-demo").textContent = "Modo demostración: " + indiceDemo + " de " + DEMO.length +
+      " muestras del guion EC-DOG / León." + (extra ? " " + extra : "");
+  }
+  function siguienteMuestra() {
+    if (indiceDemo >= DEMO.length) { pintarDemo("Fin de la demo: pulse «Reiniciar demo»."); return false; }
+    var texto = DEMO[indiceDemo];
+    indiceDemo++;
+    procesar(texto, "demo");
+    pintarDemo();
+    return true;
+  }
+
+  /* ======================= Exportar ======================= */
+  function textoRegistro() {
+    var l = [];
+    l.push("COLACIÓN ATC — REGISTRO DE ENTRENAMIENTO");
+    l.push("AYUDA DE ENTRENAMIENTO Y APOYO. NO CERTIFICADA. El piloto al mando y la escucha directa de la radio prevalecen siempre.");
+    l.push("Indicativo: " + indicativo);
+    l.push("Exportado: " + new Date().toLocaleString("es-ES"));
+    l.push("");
+    if (!registro.length) l.push("(Registro vacío)");
+    registro.forEach(function (e, i) {
+      l.push("[" + (i + 1) + "] " + (e.fecha ? new Date(e.fecha).toLocaleDateString("es-ES") + " " : "") + e.hora +
+        " · " + (e.dirigidoAMi ? "DIRIGIDO a " + e.indicativo : "NO DIRIGIDO") + (e.tipo ? " · " + e.tipo : "") +
+        (e.dirigidoAMi && !e.reconocida ? " · NO RECONOCIDO" : "") + " · " + (e.origen || "manual"));
+      l.push("Torre: " + e.texto);
+      l.push("Datos: " + resumenDatos(e.datos || datosVacios()));
+      if (e.dirigidoAMi) l.push("Sugerencia: " + (e.sugerencia === null ? "sin colación" : e.sugerencia));
+      if (e.motivo) l.push("Motivo: " + e.motivo);
+      l.push("");
+    });
+    return l.join("\n");
+  }
+  function avisoExportar(t) { $("estado-exportar").textContent = t; }
+  function copiarRegistro() {
+    var texto = textoRegistro();
+    function alternativa() {
+      var ta = document.createElement("textarea");
+      ta.value = texto;
+      ta.setAttribute("readonly", "");
+      ta.style.position = "fixed";
+      ta.style.top = "-1000px";
+      document.body.appendChild(ta);
+      ta.select();
+      var ok = false;
+      try { ok = document.execCommand("copy"); } catch (e) { ok = false; }
+      document.body.removeChild(ta);
+      avisoExportar(ok ? "Registro copiado al portapapeles." : "No se pudo copiar; use «Descargar .txt».");
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(texto).then(function () { avisoExportar("Registro copiado al portapapeles."); }, alternativa);
+    } else {
+      alternativa();
+    }
+  }
+  function compartirRegistro() {
+    if (!navigator.share) { avisoExportar("Compartir no está disponible en este navegador."); return; }
+    navigator.share({ title: "Registro Colación ATC", text: textoRegistro() }).then(function () {
+      avisoExportar("Registro compartido.");
+    }, function (err) {
+      if (!err || err.name !== "AbortError") avisoExportar("No se pudo compartir; use «Copiar» o «Descargar .txt».");
+    });
+  }
+  function descargarRegistro() {
+    var blob = new Blob([textoRegistro()], { type: "text/plain;charset=utf-8" });
+    var url = URL.createObjectURL(blob);
+    var f = new Date();
+    var a = document.createElement("a");
+    a.href = url;
+    a.download = "registro-colacion-" + f.getFullYear() + pad(f.getMonth() + 1, 2) + pad(f.getDate(), 2) + "-" +
+      pad(f.getHours(), 2) + pad(f.getMinutes(), 2) + pad(f.getSeconds(), 2) + ".txt";
+    a.rel = "noopener";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function () { URL.revokeObjectURL(url); }, 4000);
+    avisoExportar("Archivo .txt generado en este dispositivo.");
+  }
+
+  /* ======================= Voz (micrófono solo tras pulsar Escuchar) ======================= */
+  var MotorVoz = window.SpeechRecognition || window.webkitSpeechRecognition || null;
+  var reconocedor = null, escuchando = false, bufferVoz = "", temporizadorVoz = null, reinicios = [], bloqueoPantalla = null;
+  var parcialPendiente = "", indicesPendientes = [], vistosActual = null, consumidosActual = null, esRearranque = false;
+  var generacionVoz = 0, solicitudBloqueo = 0;
+
+  function estadoAudio(t) { $("estado-audio").textContent = t; }
+  function pintarBotonEscuchar() {
+    var b = $("btn-escuchar");
+    b.textContent = escuchando ? "Detener" : "Escuchar";
+    b.classList.toggle("escuchando", escuchando);
+    b.classList.toggle("principal", !escuchando);
+    b.setAttribute("aria-pressed", escuchando ? "true" : "false");
+  }
+  /* ¿El fragmento empieza por un indicativo? Entonces es otra transmisión y no se une a la anterior. */
+  var NO_INDICATIVO = conjunto(("pista qnh q transpondedor squawk codigo viento frecuencia rumbo nivel altitud calle calles " +
+    "punto numero cabecera visibilidad temperatura rocio ascienda descienda suba baje mantenga ascenso descenso velocidad " +
+    "fl nubes hora a de en para hasta y o con sobre alcanzando proximo trafico pies grados nudos vire gire").split(" "));
+  function iniciaTransmision(texto) {
+    var n = prepararTexto(texto).n;
+    var primero = /[a-z0-9]/.exec(n);
+    if (!primero) return false;
+    var tramos = buscarIndicativo(n, indicativo);
+    if (tramos.length && tramos[0].ini === primero.index) return true;
+    if (/^[a-z0-9]{1,2}-[a-z0-9]{3,5}\b/.test(n)) return true;
+    var toks = tokenizar(n), f = 0;
+    while (f < toks.length && tiene(FONETICO, toks[f].t)) f++;
+    if (f >= 3) return true;
+    var m = /^([a-z]+)\s+\d{2,4}[a-z]{0,2}\b/.exec(n);
+    return !!(m && !tiene(NO_INDICATIVO, m[1]));
+  }
+  function volcarSoloFinales() {
+    var t = bufferVoz.replace(/\s+/g, " ").trim();
+    bufferVoz = "";
+    if (t) { procesar(t, "voz"); verResultado(); }
+  }
+
+  /* Una transmisión = lo reconocido hasta un silencio. Si el motor no marca el texto como final
+     (ocurre en algunos Safari), se toma el parcial tras un silencio más largo o al cortar el motor
+     y se recuerda su longitud para no ignorar texto posterior añadido al mismo índice. */
+  function volcarVoz() {
+    if (temporizadorVoz) { clearTimeout(temporizadorVoz); temporizadorVoz = null; }
+    var t = bufferVoz;
+    if (parcialPendiente) {
+      t += " " + parcialPendiente;
+      if (consumidosActual) {
+        indicesPendientes.forEach(function (p) { consumidosActual[p.i] = p.len; });
+      }
+    }
+    bufferVoz = "";
+    parcialPendiente = "";
+    indicesPendientes = [];
+    t = t.replace(/\s+/g, " ").trim();
+    $("audio-parcial").textContent = "";
+    if (t) { procesar(t, "voz"); verResultado(); }
+  }
+  function programarVolcado() {
+    if (temporizadorVoz) clearTimeout(temporizadorVoz);
+    temporizadorVoz = setTimeout(function () {
+      temporizadorVoz = parcialPendiente ? setTimeout(volcarVoz, 1500) : null;
+      if (!parcialPendiente) volcarVoz();
+    }, 1400);
+  }
+  function pedirBloqueoPantalla() {
+    try {
+      if (navigator.wakeLock && navigator.wakeLock.request && escuchando) {
+        var solicitud = ++solicitudBloqueo, generacion = generacionVoz;
+        navigator.wakeLock.request("screen").then(function (l) {
+          /* La promesa puede resolverse después de Detener o de un nuevo inicio. */
+          if (!escuchando || generacion !== generacionVoz || solicitud !== solicitudBloqueo) {
+            try { var liberacion = l.release(); if (liberacion && liberacion.catch) liberacion.catch(function () {}); } catch (e) {}
+            return;
+          }
+          if (bloqueoPantalla && bloqueoPantalla !== l) {
+            try { var anterior = bloqueoPantalla.release(); if (anterior && anterior.catch) anterior.catch(function () {}); } catch (e) {}
+          }
+          bloqueoPantalla = l;
+        }, function () {});
+      }
+    } catch (e) { /* opcional */ }
+  }
+  function soltarBloqueoPantalla() {
+    solicitudBloqueo++;
+    var l = bloqueoPantalla;
+    bloqueoPantalla = null;
+    try { if (l) { var liberacion = l.release(); if (liberacion && liberacion.catch) liberacion.catch(function () {}); } } catch (e) { /* opcional */ }
+  }
+  function arrancarMotor() {
+    var motor = new MotorVoz();
+    var vistos = {};
+    var consumidos = {};
+    reconocedor = motor;
+    vistosActual = vistos;
+    consumidosActual = consumidos;
+    motor.lang = "es-ES";
+    motor.continuous = true;
+    motor.interimResults = true;
+    motor.maxAlternatives = 1;
+    motor.onstart = function () {
+      if (motor !== reconocedor) return;
+      estadoAudio("Escuchando (es-ES). Mantenga siempre la escucha directa de la radio.");
+    };
+    motor.onresult = function (ev) {
+      if (motor !== reconocedor) return;
+      var parcial = "", pendientes = [];
+      for (var i = ev.resultIndex; i < ev.results.length; i++) {
+        if (vistos[i]) continue;
+        var r = ev.results[i];
+        var completo = r[0] && r[0].transcript ? r[0].transcript : "";
+        /* Si Safari revisa el texto y lo acorta tras un volcado por silencio, no se vuelve a procesar entero (evita duplicados). */
+        var desde = consumidos[i] ? Math.min(consumidos[i], completo.length) : 0;
+        var t = completo.slice(desde);
+        if (r.isFinal) {
+          vistos[i] = true;
+          if (!t.trim()) continue;
+          if (bufferVoz.trim() && iniciaTransmision(t)) volcarSoloFinales();
+          bufferVoz += " " + t;
+        } else if (t.trim()) {
+          parcial += " " + t;
+          pendientes.push({ i: i, len: completo.length });
+        }
+      }
+      parcialPendiente = parcial.replace(/\s+/g, " ").trim();
+      indicesPendientes = pendientes;
+      if (parcialPendiente && bufferVoz.trim() && iniciaTransmision(parcialPendiente)) volcarSoloFinales();
+      var visto = (bufferVoz + " " + parcialPendiente).replace(/\s+/g, " ").trim();
+      $("audio-parcial").textContent = visto ? "Oyendo: " + visto : "";
+      if (visto) programarVolcado();
+    };
+    motor.onerror = function (ev) {
+      if (motor !== reconocedor) return;
+      var e = ev && ev.error ? ev.error : "desconocido";
+      var fatal = e === "not-allowed" || e === "service-not-allowed" || e === "audio-capture" || e === "language-not-supported";
+      if (fatal) {
+        escuchando = false;
+        generacionVoz++;
+        soltarBloqueoPantalla();
+      }
+      if (e === "not-allowed" || e === "service-not-allowed") {
+        estadoAudio(esRearranque ?
+          "El sistema detuvo la escucha. Pulse «Escuchar» para continuar." :
+          "Permiso de micrófono denegado o reconocimiento no permitido. Use la entrada manual o el modo demostración.");
+      } else if (e === "audio-capture") {
+        estadoAudio("No llega audio: compruebe el micrófono o el adaptador del intercom.");
+      } else if (e === "language-not-supported") {
+        estadoAudio("El reconocimiento no admite es-ES en este navegador. Use la entrada manual.");
+      } else if (e === "network") {
+        estadoAudio("El reconocimiento del navegador no tiene conexión con su servicio. Use la entrada manual si persiste.");
+      } else if (e !== "no-speech" && e !== "aborted") {
+        estadoAudio("Error de reconocimiento (" + e + "). Se reintentará.");
+      }
+      pintarBotonEscuchar();
+    };
+    motor.onend = function () {
+      if (motor !== reconocedor) return;
+      reconocedor = null;
+      if (!escuchando) { volcarVoz(); pintarBotonEscuchar(); soltarBloqueoPantalla(); return; }
+      /* El motor cortó (silencio, límite del sistema…): lo oído se conserva y se rearranca. */
+      if (parcialPendiente) { bufferVoz += " " + parcialPendiente; parcialPendiente = ""; indicesPendientes = []; }
+      if (bufferVoz.trim()) programarVolcado();
+      var ahora = Date.now();
+      reinicios = reinicios.filter(function (t) { return ahora - t < 15000; });
+      reinicios.push(ahora);
+      if (reinicios.length > 8) {
+        escuchando = false;
+        generacionVoz++;
+        volcarVoz();
+        pintarBotonEscuchar();
+        soltarBloqueoPantalla();
+        estadoAudio("El reconocimiento se detiene una y otra vez. Pulse «Escuchar» para reintentar o use la entrada manual.");
+        return;
+      }
+      var generacion = generacionVoz;
+      setTimeout(function () {
+        if (!escuchando || generacion !== generacionVoz) return;
+        esRearranque = true;
+        try { arrancarMotor(); } catch (e) {
+          escuchando = false;
+          generacionVoz++;
+          reconocedor = null;
+          volcarVoz();
+          soltarBloqueoPantalla();
+          pintarBotonEscuchar();
+          estadoAudio("No se pudo rearrancar el reconocimiento. Pulse «Escuchar» para reintentar o use la entrada manual.");
+        }
+      }, 250);
+    };
+    motor.start();
+  }
+  function alternarEscucha() {
+    if (!MotorVoz) { estadoAudio(MSG_SIN_VOZ); return; }
+    if (escuchando) {
+      escuchando = false;
+      generacionVoz++;
+      var motorDetenido = reconocedor;
+      try { if (reconocedor) reconocedor.stop(); } catch (e) { /* ya parado */ }
+      /* El motor suele entregar el último resultado al parar; si no llega, se vuelca igualmente.
+         Pasado ese plazo se ignoran resultados tardíos para no duplicar la transmisión. */
+      setTimeout(function () {
+        if (!escuchando && reconocedor === motorDetenido) { reconocedor = null; volcarVoz(); }
+      }, 1200);
+      soltarBloqueoPantalla();
+      estadoAudio("Escucha detenida.");
+      pintarBotonEscuchar();
+      return;
+    }
+    /* Cierra una sesión anterior antes de crear otra: sus eventos tardíos quedan invalidados. */
+    generacionVoz++;
+    try { if (reconocedor) reconocedor.stop(); } catch (e) { /* ya parado */ }
+    if (bufferVoz || parcialPendiente) volcarVoz();
+    reconocedor = null;
+    escuchando = true;
+    esRearranque = false;
+    reinicios = [];
+    pintarBotonEscuchar();
+    estadoAudio("Solicitando el micrófono…");
+    try {
+      arrancarMotor();
+      pedirBloqueoPantalla();
+    } catch (e) {
+      escuchando = false;
+      generacionVoz++;
+      reconocedor = null;
+      soltarBloqueoPantalla();
+      pintarBotonEscuchar();
+      estadoAudio("No se pudo iniciar el reconocimiento de voz. Use la entrada manual o el modo demostración.");
+    }
+  }
+
+  /* ======================= Eventos ======================= */
+  $("btn-guardar-indicativo").addEventListener("click", function () { configurar({ indicativo: $("campo-indicativo").value }); });
+  $("campo-indicativo").addEventListener("keydown", function (ev) {
+    if (ev.key === "Enter") { ev.preventDefault(); configurar({ indicativo: $("campo-indicativo").value }); }
+  });
+  function verResultado() {
+    var b = $("bloque-mensaje");
+    try { b.scrollIntoView({ block: "start", behavior: "smooth" }); } catch (e) { b.scrollIntoView(); }
+  }
+  $("btn-procesar").addEventListener("click", function () {
+    var campo = $("entrada-manual");
+    if (!campo.value.trim()) { $("estado-manual").textContent = "Escriba primero el texto de la torre."; campo.focus(); return; }
+    $("estado-manual").textContent = "";
+    procesar(campo.value, "manual");
+    campo.value = "";
+    campo.blur();
+    verResultado();
+  });
+  $("entrada-manual").addEventListener("keydown", function (ev) {
+    if (ev.key === "Enter" && (ev.ctrlKey || ev.metaKey)) { ev.preventDefault(); $("btn-procesar").click(); }
+  });
+  $("btn-demo-siguiente").addEventListener("click", function () { if (siguienteMuestra()) verResultado(); });
+  $("btn-demo-reiniciar").addEventListener("click", function () { indiceDemo = 0; pintarDemo("Vuelve a la primera muestra."); });
+  $("btn-vaciar").addEventListener("click", function () {
+    panel = datosVacios();
+    guardarPanel();
+    pintarPanel();
+    $("estado-manual").textContent = "Panel de datos vaciado. El registro se conserva.";
+  });
+  $("btn-aviso").addEventListener("click", function () {
+    var reducido = $("aviso-corto").classList.contains("oculto");
+    $("aviso-completo").classList.toggle("oculto", reducido);
+    $("aviso-corto").classList.toggle("oculto", !reducido);
+    $("aviso").classList.toggle("reducido", reducido);
+    this.textContent = reducido ? "Ver completo" : "Entendido · reducir aviso";
+    this.setAttribute("aria-expanded", reducido ? "false" : "true");
+  });
+  $("btn-copiar").addEventListener("click", copiarRegistro);
+  $("btn-compartir").addEventListener("click", compartirRegistro);
+  $("btn-descargar").addEventListener("click", descargarRegistro);
+  $("btn-escuchar").addEventListener("click", alternarEscucha);
+  $("enlace-ayuda").addEventListener("click", function () { $("ayuda").open = true; });
+  document.addEventListener("visibilitychange", function () {
+    if (document.visibilityState === "visible" && escuchando && !bloqueoPantalla) pedirBloqueoPantalla();
+  });
+
+  /* ======================= Inicio ======================= */
+  $("campo-indicativo").value = indicativo;
+  if (!MotorVoz) {
+    $("btn-escuchar").disabled = true;
+    estadoAudio(MSG_SIN_VOZ);
+  }
+  if (!navigator.share) {
+    $("btn-compartir").disabled = true;
+    $("btn-compartir").title = "Compartir no está disponible en este navegador";
+  }
+  pintarPanel();
+  pintarRegistro();
+  pintarUltimo(registro.length ? registro[registro.length - 1] : null);
+  pintarDemo();
+  pintarBotonEscuchar();
+
+  window.atc = Object.freeze({
+    procesar: function (texto) { return procesar(texto, "manual"); },
+    configurar: configurar,
+    obtenerIndicativo: function () { return indicativo; },
+    obtenerDatos: function () { return copiar(panel); },
+    obtenerRegistro: function () { return copiar(registro); },
+    reset: reset
+  });
+
+  if ("serviceWorker" in navigator && location.protocol !== "file:") {
+    window.addEventListener("load", function () {
+      navigator.serviceWorker.register("sw.js", { scope: "./" }).catch(function () { /* la app funciona igual sin caché */ });
+    });
+  }
+})();
+</script>
+</body>
+</html>

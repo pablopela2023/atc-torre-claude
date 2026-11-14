@@ -1,0 +1,243 @@
+
+### Buenos días, EC-DOG. Adelante.
+  A2-kimi: DIR ok contacto [contacto] {} => null
+  = A3-gemini: (igual)
+  = A4-peloncho: (igual)
+
+### EC-DOG, autorizado a rodar punto de espera pista 23.
+  A2-kimi: DIR ok rodaje [rodaje] {"pista":"23"} => Autorizado a rodar punto de espera pista 23. EC-DOG.
+  = A3-gemini: (igual)
+  = A4-peloncho: (igual)
+
+### EC-DOG, mantenga posición.
+  A2-kimi: DIR ok mantenga_posicion [mantenga_posicion] {} => Mantengo posición. EC-DOG.
+  = A3-gemini: (igual)
+  = A4-peloncho: (igual)
+
+### EC-DOG, autorizado a entrar cabecera 23.
+  A2-kimi: DIR ok entrar_cabecera [entrar_cabecera] {"pista":"23"} => Autorizado a entrar cabecera 23. EC-DOG.
+  = A3-gemini: (igual)
+  = A4-peloncho: (igual)
+
+### EC-DOG, autorizado a entrar y backtrack pista 23.
+  A2-kimi: DIR ok entrar_backtrack [entrar_backtrack] {"pista":"23"} => Autorizado a entrar y backtrack pista 23. EC-DOG.
+  = A3-gemini: (igual)
+  = A4-peloncho: (igual)
+
+### EC-DOG, autorizado a despegar pista 23, viento 24010KT.
+  A2-kimi: DIR ok despegue [despegue] {"pista":"23","viento":{"direccion":240,"velocidad":10,"unidad":"KT"}} => Autorizado a despegar pista 23. EC-DOG.
+  = A3-gemini: (igual)
+  = A4-peloncho: (igual)
+
+### EC-DOG, autorizado a despegar pista 23, viento 24010KT, notifique punto S1.
+  A2-kimi: DIR ok despegue [despegue,notifique] {"pista":"23","viento":{"direccion":240,"velocidad":10,"unidad":"KT"},"punto":"S1"} => Autorizado a despegar pista 23, notificaré punto S1. EC-DOG.
+  = A3-gemini: (igual)
+  = A4-peloncho: (igual)
+
+### EC-DOG, autorizado a despegar pista 23, viento 24010KT, notifique punto S1. Me confirma intenciones.
+  A2-kimi: DIR ok despegue [despegue,notifique] {"pista":"23","viento":{"direccion":240,"velocidad":10,"unidad":"KT"},"punto":"S1"} => Autorizado a despegar pista 23, notificaré punto S1. EC-DOG.
+  = A3-gemini: (igual)
+  = A4-peloncho: (igual)
+
+### EC-DOG, recibido.
+  A2-kimi: DIR ok informacion [informacion] {} => Recibido. EC-DOG.
+  = A3-gemini: (igual)
+  = A4-peloncho: (igual)
+
+### EC-DOG, recibido. Sin tráfico notificado en la zona.
+  A2-kimi: DIR ok informacion [informacion] {} => Recibido. EC-DOG.
+  = A3-gemini: (igual)
+  = A4-peloncho: (igual)
+
+### EC-DOG, recibido, notifique 25 millas fuera.
+  A2-kimi: DIR ok notifique [notifique] {} => Notificaré 25 millas fuera. EC-DOG.
+  = A3-gemini: (igual)
+  = A4-peloncho: (igual)
+
+### Buenas de nuevo. EC-DOG. Adelante.
+  A2-kimi: DIR ok contacto [contacto] {} => null
+  = A3-gemini: (igual)
+  = A4-peloncho: (igual)
+
+### EC-DOG, recibido, mantenga posición, le aviso para regresar al campo.
+  A2-kimi: DIR ok mantenga_posicion [mantenga_posicion] {} => Mantengo posición. EC-DOG.
+  = A3-gemini: (igual)
+  = A4-peloncho: (igual)
+
+### EC-DOG, proceda para el campo, notifique o llame con campo a la vista.
+  A2-kimi: DIR ok circuito [circuito,notifique] {} => Procederé para el campo, notificaré o, llamaré con campo. EC-DOG.
+  = A3-gemini: (igual)
+  A4-peloncho: DIR ok circuito [circuito,notifique] {} => Procederé para el campo, notificaré con campo a la vista. EC-DOG.
+
+### EC-DOG, entre en circuito de tráfico, notifique en viento en cola izquierda pista 23.
+  A2-kimi: DIR ok circuito [circuito,notifique] {"pista":"23"} => Entraré en circuito de tráfico, notificaré en viento en cola izquierda pista 23. EC-DOG.
+  = A3-gemini: (igual)
+  = A4-peloncho: (igual)
+
+### ECDOG, proceda para base izquierda pista 23.
+  A2-kimi: DIR ok circuito [circuito] {"pista":"23"} => Procederé para base izquierda pista 23. EC-DOG.
+  = A3-gemini: (igual)
+  = A4-peloncho: (igual)
+
+### EC-DOG, recibido. Extienda o prolongue viento en cola izquierda pista 23. Le aviso para virar.
+  A2-kimi: DIR ok circuito [circuito] {"pista":"23"} => Extenderé o, prolongaré viento en cola izquierda pista 23. EC-DOG.
+  = A3-gemini: (igual)
+  A4-peloncho: DIR ok circuito [circuito] {"pista":"23"} => Extenderé viento en cola izquierda pista 23. EC-DOG.
+
+### EC-DOG, llame en base pista 23.
+  A2-kimi: DIR ok circuito [notifique,circuito] {"pista":"23"} => Llamaré en base pista 23. EC-DOG.
+  = A3-gemini: (igual)
+  = A4-peloncho: (igual)
+
+### EC-DOG, a la vista, autorizado a aterrizar pista 23, viento 25010KT.
+  A2-kimi: DIR ok aterrizaje [aterrizaje] {"pista":"23","viento":{"direccion":250,"velocidad":10,"unidad":"KT"}} => Autorizado a aterrizar pista 23. EC-DOG.
+  = A3-gemini: (igual)
+  = A4-peloncho: (igual)
+
+### Recibido, continúe rodaje a plataforma militar. EC-DOG.
+  A2-kimi: DIR ok rodaje [rodaje] {} => Continúo rodaje a plataforma militar. EC-DOG.
+  = A3-gemini: (igual)
+  = A4-peloncho: (igual)
+
+### eco charlie delta oscar golf autorizado a despegar pista dos tres viento dos cuatro cero grados diez nudos
+  A2-kimi: DIR ok despegue [despegue] {"pista":"23","viento":{"direccion":240,"velocidad":10,"unidad":"KT"}} => Autorizado a despegar pista 23. EC-DOG.
+  = A3-gemini: (igual)
+  = A4-peloncho: (igual)
+
+### echo charlie delta oscar golf puesta en marcha aprobada qnh uno cero dos cinco pista dos tres notifique listo rodar
+  A2-kimi: DIR ok puesta_en_marcha [puesta_en_marcha,notifique] {"qnh":1025,"pista":"23"} => Puesta en marcha aprobada, QNH 1025, pista 23, notificaré listo rodar. EC-DOG.
+  = A3-gemini: (igual)
+  = A4-peloncho: (igual)
+
+### delta oscar golf pase a frecuencia uno uno ocho decimal cuatro cinco cinco
+  A2-kimi: DIR ok cambio_frecuencia [cambio_frecuencia] {"frecuencia":"118.455"} => Frecuencia 118.455. EC-DOG.
+  = A3-gemini: (igual)
+  = A4-peloncho: (igual)
+
+### EC-DOG transpondedor siete cero cero cero
+  A2-kimi: DIR ok transpondedor [transpondedor] {"squawk":"7000"} => Transpondedor 7000. EC-DOG.
+  = A3-gemini: (igual)
+  = A4-peloncho: (igual)
+
+### EC-DOG, squawk 4721, contacte con aproximación en 119.700
+  A2-kimi: DIR ok transpondedor [transpondedor,cambio_frecuencia] {"squawk":"4721","frecuencia":"119.700"} => Transpondedor 4721, frecuencia 119.700. EC-DOG.
+  = A3-gemini: (igual)
+  = A4-peloncho: (igual)
+
+### EC-DOG continúe ascenso para cinco mil quinientos pies
+  A2-kimi: DIR ok ascenso [ascenso] {"altitud":"5500 ft"} => En ascenso para 5500 ft. EC-DOG.
+  = A3-gemini: (igual)
+  = A4-peloncho: (igual)
+
+### EC-DOG ascienda a tres mil pies
+  A2-kimi: DIR ok ascenso [ascenso] {"altitud":"3000 ft"} => En ascenso para 3000 ft. EC-DOG.
+  = A3-gemini: (igual)
+  = A4-peloncho: (igual)
+
+### EC-DOG QNH mil cero uno tres
+  A2-kimi: DIR ok informacion [informacion] {"qnh":1000} => QNH 1000. EC-DOG.
+  A3-gemini: DIR ok informacion [informacion] {"qnh":1001} => QNH 1001. EC-DOG.
+  A4-peloncho: DIR ok informacion [informacion] {"qnh":1013} => QNH 1013. EC-DOG.
+
+### E C D O G autorizado a aterrizar pista 23
+  A2-kimi: DIR ok aterrizaje [aterrizaje] {"pista":"23"} => Autorizado a aterrizar pista 23. EC-DOG.
+  = A3-gemini: (igual)
+  = A4-peloncho: (igual)
+
+### DOG autorizado a aterrizar pista 23
+  A2-kimi: DIR ok aterrizaje [aterrizaje] {"pista":"23"} => Autorizado a aterrizar pista 23. EC-DOG.
+  = A3-gemini: (igual)
+  = A4-peloncho: (igual)
+
+### EC-DOG información ATIS whiskey, QNH 1019
+  A2-kimi: DIR ok informacion [informacion] {"qnh":1019,"atis":"W"} => QNH 1019. EC-DOG.
+  = A3-gemini: (igual)
+  = A4-peloncho: (igual)
+
+### EC-DOG, frecuencia 118,455
+  A2-kimi: DIR ok cambio_frecuencia [cambio_frecuencia] {"frecuencia":"118.455"} => Frecuencia 118.455. EC-DOG.
+  = A3-gemini: (igual)
+  = A4-peloncho: (igual)
+
+### EC-DOG pase con torre en uno uno ocho coma cuatro cinco cinco
+  A2-kimi: DIR ok cambio_frecuencia [cambio_frecuencia] {"frecuencia":"118.455"} => Frecuencia 118.455. EC-DOG.
+  = A3-gemini: (igual)
+  = A4-peloncho: (igual)
+
+### EC-DOG, autorizado a rodar punto de espera pista 23 vía calle charlie calle alfa
+  A2-kimi: DIR ok rodaje [rodaje] {"pista":"23","calles":["C","A"]} => Autorizado a rodar punto de espera pista 23 vía calle C calle A. EC-DOG.
+  = A3-gemini: (igual)
+  = A4-peloncho: (igual)
+
+### EC-DOG, viento 240 grados 10 nudos, autorizado a despegar pista 23
+  A2-kimi: DIR ok despegue [despegue] {"pista":"23","viento":{"direccion":240,"velocidad":10,"unidad":"KT"}} => Autorizado a despegar pista 23. EC-DOG.
+  = A3-gemini: (igual)
+  = A4-peloncho: (igual)
+
+### EC-DOG autorizado a aterrizar pista
+  A2-kimi: DIR NOREC aterrizaje [aterrizaje] {} => Repita, EC-DOG
+  = A3-gemini: (igual)
+  = A4-peloncho: (igual)
+
+### EC-DOG QNH 10
+  A2-kimi: DIR NOREC otro [otro] {} => Repita, EC-DOG
+  = A3-gemini: (igual)
+  = A4-peloncho: (igual)
+
+### EC-DOH autorizado a despegar pista 23
+  A2-kimi: no NOREC null [] {} => null
+  = A3-gemini: (igual)
+  = A4-peloncho: (igual)
+
+### EC-DOGX autorizado a despegar pista 23
+  A2-kimi: no NOREC null [] {} => null
+  = A3-gemini: (igual)
+  = A4-peloncho: (igual)
+
+### Tráfico EC-DOG en final, IBERIA 3254 autorizado a despegar pista 23
+  A2-kimi: no NOREC null [] {} => null
+  = A3-gemini: (igual)
+  = A4-peloncho: (igual)
+
+### IBERIA 3254, autorizado a despegar pista 23, EC-DOG mantenga posición
+  A2-kimi: DIR ok despegue [despegue,mantenga_posicion] {"pista":"23"} => Autorizado a despegar pista 23, mantengo posición. EC-DOG.
+  = A3-gemini: (igual)
+  A4-peloncho: DIR ok mantenga_posicion [mantenga_posicion] {} => Mantengo posición. EC-DOG.
+
+### EC-DOG, mantenga posición, tráfico Cessna en final pista 23
+  A2-kimi: DIR ok mantenga_posicion [mantenga_posicion] {"pista":"23"} => Mantengo posición. EC-DOG.
+  = A3-gemini: (igual)
+  = A4-peloncho: (igual)
+
+### EC-DOG, autorizado a entrar y backtrack pista dos tres, notifique listo
+  A2-kimi: DIR ok entrar_backtrack [entrar_backtrack,notifique] {"pista":"23"} => Autorizado a entrar y backtrack pista 23, notificaré listo. EC-DOG.
+  = A3-gemini: (igual)
+  = A4-peloncho: (igual)
+
+### EC-DOG, pista en servicio cero cinco, QNH uno cero uno tres
+  A2-kimi: DIR ok pista_en_servicio [pista_en_servicio] {"qnh":1013,"pista":"05"} => Pista 05, QNH 1013. EC-DOG.
+  = A3-gemini: (igual)
+  = A4-peloncho: (igual)
+
+### EC-DOG frecuencia uno dos uno decimal siete
+  A2-kimi: DIR ok cambio_frecuencia [cambio_frecuencia] {"frecuencia":"121.7"} => Frecuencia 121.7. EC-DOG.
+  = A3-gemini: (igual)
+  = A4-peloncho: (igual)
+
+### EC-DOG, recibido, notifique veinticinco millas fuera
+  A2-kimi: DIR ok notifique [notifique] {} => Notificaré 25 millas fuera. EC-DOG.
+  = A3-gemini: (igual)
+  = A4-peloncho: (igual)
+
+### EC-DOG, autorizado a despegar pista 23, viento calma
+  A2-kimi: DIR ok despegue [despegue] {"pista":"23","viento":{"direccion":null,"velocidad":0,"unidad":"KT"}} => Autorizado a despegar pista 23. EC-DOG.
+  = A3-gemini: (igual)
+  = A4-peloncho: (igual)
+
+### EC-DOG, autorizado a despegar pista 23, viento variable 3 nudos
+  A2-kimi: DIR ok despegue [despegue] {"pista":"23","viento":{"direccion":"VRB","velocidad":3,"unidad":"KT"}} => Autorizado a despegar pista 23. EC-DOG.
+  = A3-gemini: (igual)
+  = A4-peloncho: (igual)
+../../versiones/A2-kimi errs []
+../../versiones/A3-gemini errs []
+../../versiones/A4-peloncho errs []

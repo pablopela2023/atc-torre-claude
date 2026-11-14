@@ -1,0 +1,237 @@
+{
+ "sw": {
+  "scope": "http://127.0.0.1:38975/colacion-atc/",
+  "active": true,
+  "ctrl": true
+ },
+ "manifest": "http://127.0.0.1:38975/colacion-atc/manifest.webmanifest",
+ "cspFetch": "bloqueado: Failed to fetch",
+ "cspImg": "bloqueado",
+ "aviso": {
+  "visible": true,
+  "texto": "AYUDA DE ENTRENAMIENTO Y APOYO. NO CERTIFICADA. Esta aplicación no es un equipo "
+ },
+ "overflow": {
+  "sw": 390,
+  "cw": 390
+ },
+ "pequenos": [],
+ "anchos": [],
+ "manifestErrores": [],
+ "manifestCampos": {
+  "name": "Colación ATC — ayuda de entrenamiento",
+  "display": "standalone",
+  "start_url": "./index.html",
+  "scope": "./",
+  "icons": [
+   "180x180",
+   "192x192",
+   "512x512"
+  ]
+ },
+ "instalable": [],
+ "voz": {
+  "boton": false,
+  "estado": ""
+ },
+ "tipografia": {
+  "mensaje": "20.8px",
+  "sugerencia": "28.48px",
+  "fondo": "rgb(5, 7, 10)"
+ },
+ "demo": [
+  [
+   "Buenos días, EC-DOG. Adelante.",
+   "Sin colación: puede transmitir su solicitud",
+   "Modo demostración: 1 de 31 muestras del guion EC-DOG / León."
+  ],
+  [
+   "EC-DOG puesta en marcha aprobada, datos del campo: viento 250º 15 KT visibilidad + 10 Km., nubes SCT030 BKN050 17/09 QNH 1025. Pista en servicio 23. Notifique listo rodar.",
+   "Puesta en marcha aprobada, QNH 1025, pista 23, notificaré listo rodar. EC-DOG.",
+   "Modo demostración: 2 de 31 muestras del guion EC-DOG / León."
+  ],
+  [
+   "EC-DOG, autorizado a rodar punto de espera pista 23.",
+   "Autorizado a rodar punto de espera pista 23. EC-DOG.",
+   "Modo demostración: 3 de 31 muestras del guion EC-DOG / León."
+  ],
+  [
+   "EC-DOG, autorizado a rodar punto de espera pista 23, via calle C, calle A.",
+   "Autorizado a rodar punto de espera pista 23, vía calle C, calle A. EC-DOG.",
+   "Modo demostración: 4 de 31 muestras del guion EC-DOG / León."
+  ],
+  [
+   "EC-DOG, ruede punto de espera A.",
+   "Rodaré punto de espera A. EC-DOG.",
+   "Modo demostración: 5 de 31 muestras del guion EC-DOG / León."
+  ],
+  [
+   "EC-DOG, mantenga posición.",
+   "Mantengo posición. EC-DOG.",
+   "Modo demostración: 6 de 31 muestras del guion EC-DOG / León."
+  ],
+  [
+   "EC-DOG, mantenga posición, tráfico en final.",
+   "Mantengo posición. EC-DOG.",
+   "Modo demostración: 7 de 31 muestras del guion EC-DOG / León."
+  ],
+  [
+   "EC-DOG, autorizado a entrar cabecera 23.",
+   "Autorizado a entrar cabecera 23. EC-DOG.",
+   "Modo demostración: 8 de 31 muestras del guion EC-DOG / León."
+  ],
+  [
+   "EC-DOG, autorizado a entrar y backtrack pista 23.",
+   "Autorizado a entrar y backtrack pista 23. EC-DOG.",
+   "Modo demostración: 9 de 31 muestras del guion EC-DOG / León."
+  ],
+  [
+   "EC-DOG, autorizado a entrar y backtrack pista 23, notifique listo.",
+   "Autorizado a entrar y backtrack pista 23, notificaré listo. EC-DOG.",
+   "Modo demostración: 10 de 31 muestras del guion EC-DOG / León."
+  ],
+  [
+   "EC-DOG, mantenga posición.",
+   "Mantengo posición. EC-DOG.",
+   "Modo demostración: 11 de 31 muestras del guion EC-DOG / León."
+  ],
+  [
+   "EC-DOG, autorizado a despegar pista 23, viento 24010KT.",
+   "Autorizado a despegar pista 23. EC-DOG.",
+   "Modo demostración: 12 de 31 muestras del guion EC-DOG / León."
+  ],
+  [
+   "EC-DOG, autorizado a despegar pista 23, viento 24010KT, aprobado viraje izquierda, notifique alcanzando punto S1.",
+   "Autorizado a despegar pista 23, aprobado viraje izquierda, notificaré alcanzando punto S1. EC-DOG.",
+   "Modo demostración: 13 de 31 muestras del guion EC-DOG / León."
+  ],
+  [
+   "EC-DOG, autorizado a despegar pista 23, viento 24010KT, notifique punto S1.",
+   "Autorizado a despegar pista 23, notificaré punto S1. EC-DOG.",
+   "Modo demostración: 14 de 31 muestras del guion EC-DOG / León."
+  ],
+  [
+   "EC-DOG, autorizado a despegar pista 23, viento 24010KT, notifique punto S1. Me confirma intenciones.",
+   "Autorizado a despegar pista 23, notificaré punto S1. EC-DOG.",
+   "Modo demostración: 15 de 31 muestras del guion EC-DOG / León."
+  ],
+  [
+   "EC-DOG, recibido.",
+   "Recibido. EC-DOG.",
+   "Modo demostración: 16 de 31 muestras del guion EC-DOG / León."
+  ],
+  [
+   "EC-DOG, recibido. Sin tráfico notificado en la zona.",
+   "Recibido. EC-DOG.",
+   "Modo demostración: 17 de 31 muestras del guion EC-DOG / León."
+  ],
+  [
+   "EC-DOG, recibido, continúe ascenso para 5500 ft.",
+   "En ascenso para 5500 ft. EC-DOG.",
+   "Modo demostración: 18 de 31 muestras del guion EC-DOG / León."
+  ],
+  [
+   "EC-DOG, copiado, notifique abandonando zona o CTA.",
+   "Notificaré abandonando zona o CTA. EC-DOG.",
+   "Modo demostración: 19 de 31 muestras del guion EC-DOG / León."
+  ],
+  [
+   "EC-DOG, recibido, notifique 25 millas fuera.",
+   "Notificaré 25 millas fuera. EC-DOG.",
+   "Modo demostración: 20 de 31 muestras del guion EC-DOG / León."
+  ],
+  [
+   "Buenas de nuevo. EC-DOG. Adelante.",
+   "Sin colación: puede transmitir su solicitud",
+   "Modo demostración: 21 de 31 muestras del guion EC-DOG / León."
+  ],
+  [
+   "EC-DOG, recibido, espere la pista en servicio 23, viento 24010KT BKN035 19/09 Q1024. Notifique alcanzando o próximo o sobre punto S1.",
+   "Pista 23, QNH 1024, notificaré alcanzando punto S1. EC-DOG.",
+   "Modo demostración: 22 de 31 muestras del guion EC-DOG / León."
+  ],
+  [
+   "EC-DOG, recibido, mantenga posición, le aviso para regresar al campo.",
+   "Mantengo posición. EC-DOG.",
+   "Modo demostración: 23 de 31 muestras del guion EC-DOG / León."
+  ],
+  [
+   "EC-DOG, proceda para el campo, notifique o llame con campo a la vista.",
+   "Procederé para el campo, notificaré con campo a la vista. EC-DOG.",
+   "Modo demostración: 24 de 31 muestras del guion EC-DOG / León."
+  ],
+  [
+   "EC-DOG, entre en circuito de tráfico, notifique en viento en cola izquierda pista 23.",
+   "Entraré en circuito de tráfico, notificaré en viento en cola izquierda pista 23. EC-DOG.",
+   "Modo demostración: 25 de 31 muestras del guion EC-DOG / León."
+  ],
+  [
+   "ECDOG, proceda para base izquierda pista 23.",
+   "Procederé para base izquierda pista 23. EC-DOG.",
+   "Modo demostración: 26 de 31 muestras del guion EC-DOG / León."
+  ],
+  [
+   "EC-DOG, recibido. Extienda o prolongue viento en cola izquierda pista 23. Le aviso para virar.",
+   "Extenderé viento en cola izquierda pista 23. EC-DOG.",
+   "Modo demostración: 27 de 31 muestras del guion EC-DOG / León."
+  ],
+  [
+   "EC-DOG, llame en base pista 23.",
+   "Llamaré en base pista 23. EC-DOG.",
+   "Modo demostración: 28 de 31 muestras del guion EC-DOG / León."
+  ],
+  [
+   "EC-DOG, a la vista, autorizado a aterrizar pista 23, viento 25010KT.",
+   "Autorizado a aterrizar pista 23. EC-DOG.",
+   "Modo demostración: 29 de 31 muestras del guion EC-DOG / León."
+  ],
+  [
+   "EC-DOG, autorizado a aterrizar pista 23, viento 25010KT. Abandone por calle B.",
+   "Autorizado a aterrizar pista 23, abandonaré por calle B. EC-DOG.",
+   "Modo demostración: 30 de 31 muestras del guion EC-DOG / León."
+  ],
+  [
+   "Recibido, continúe rodaje a plataforma militar. EC-DOG.",
+   "Continúo rodaje a plataforma militar. EC-DOG.",
+   "Modo demostración: 31 de 31 muestras del guion EC-DOG / León."
+  ],
+  [
+   "Recibido, continúe rodaje a plataforma militar. EC-DOG.",
+   "Continúo rodaje a plataforma militar. EC-DOG.",
+   "Modo demostración: 31 de 31 muestras del guion EC-DOG / León. Fin de la demo: pulse «Reiniciar demo»."
+  ],
+  [
+   "Recibido, continúe rodaje a plataforma militar. EC-DOG.",
+   "Continúo rodaje a plataforma militar. EC-DOG.",
+   "Modo demostración: 31 de 31 muestras del guion EC-DOG / León. Fin de la demo: pulse «Reiniciar demo»."
+  ]
+ ],
+ "manual": {
+  "xss": 0,
+  "imgs": 0,
+  "qnh": "1013",
+  "sug": "QNH 1013, pista 05. EC-DOG.",
+  "reg": 1
+ },
+ "export": [
+  "registro-colacion-20261114-232948.txt: COLACIÓN ATC — REGISTRO DE ENTRENAMIENTO\nAYUDA DE ENTRENAMIENTO Y APOYO. NO CERTIFICADA. El piloto al mando y la escucha directa de la radio prevalecen siempre.\nIndicativo: EC-DOG\nExportado: 14/11/2026, 23:29:48\n\n[1] 14/11/2026 23:29:48 · DIRIGIDO a EC-DOG · informacion · manual\nTorre: EC-DOG, <img "
+ ],
+ "copiar": "Registro copiado al portapapeles.",
+ "corrupcion": [
+  "{roto → EC-DOG",
+  "\"x\" → EC-DOG",
+  "[1,2,{\"tipo\":\"<b>\",\"texto\":5}] → EC-DOG",
+  "null → EC-DOG",
+  "{\"qnh\":\"9999\",\"viento\":{\"velocidad\":\"x\"}} → EC-DOG"
+ ],
+ "offline": true,
+ "consola": [
+  "error: Connecting to 'https://example.com/' violates the following Content Security Policy directive: \"connect-src 'none'\". The action has been blocked.",
+  "error: Fetch API cannot load https://example.com/. Refused to connect because it violates the document's Content Security Policy.",
+  "error: Loading the image 'https://example.com/x.png' violates the following Content Security Policy directive: \"img-src 'self' data:\". The action has been blocked."
+ ],
+ "externas": [
+  "https://example.com/x.png"
+ ],
+ "reqsFueraSub": []
+}

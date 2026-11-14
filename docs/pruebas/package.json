@@ -1,0 +1,12 @@
+{
+  "name": "atc-pruebas",
+  "private": true,
+  "type": "module",
+  "description": "Arnés de aceptación para la web app de colación ATC",
+  "scripts": {
+    "test": "node test_atc.mjs"
+  },
+  "dependencies": {
+    "puppeteer-core": "^24.29.1"
+  }
+}

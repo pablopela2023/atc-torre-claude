@@ -1,0 +1,143 @@
+--- A3-gemini/index.html	2026-11-14 23:22:16.467922250 +0100
++++ A4-peloncho/index.html	2026-11-14 23:29:31.912200882 +0100
+@@ -428,18 +428,48 @@
+     "pista_en_servicio", "notifique", "informacion", "contacto", "otro"];
+   var MSG_SIN_VOZ = "Reconocimiento de voz no disponible en este navegador; use la entrada manual o el modo demostración";
+ 
+-  /* Transmisiones de torre del guion EC-DOG / León, en orden. */
++  /* Otro indicativo al principio de la transmisión: «IBERIA 3254», «Vueling 12AB», «EC-XYZ». */
++  var RE_OTRO_INDICATIVO = /^[\s,.;:]*(?:([a-z]{3,})\s*-?\s*\d{1,4}[a-z]{0,2}|[a-z]{1,2}-[a-z]{3,4})(?![a-z0-9])/;
++  var NO_INDICATIVO_PREFIJO = conjunto(["pista", "cabecera", "calle", "calles", "qnh", "qfe", "frecuencia", "punto", "viento",
++    "transpondedor", "squawk", "codigo", "responda", "nivel", "altitud", "rumbo", "radial", "millas", "stand", "puesto",
++    "visibilidad", "temperatura", "atis", "informacion", "numero", "fl", "ascienda", "descienda", "suba", "baje",
++    "mantenga", "notifique", "llame", "ruede", "vire", "gire", "en", "sobre", "con", "para", "hasta", "desde",
++    "few", "sct", "bkn", "ovc", "vrb", "rwy", "pies", "nudos", "grados", "las", "los", "del", "rocio", "ascenso",
++    "descenso", "velocidad", "nubes", "hora", "trafico", "alcanzando", "proximo"]);
++
++  /* Todas las transmisiones de torre del guion EC-DOG / León (líneas «-» de la fuente), en orden. */
+   var DEMO = [
++    "Buenos días, EC-DOG. Adelante.",
+     "EC-DOG puesta en marcha aprobada, datos del campo: viento 250º 15 KT visibilidad + 10 Km., nubes SCT030 BKN050 17/09 QNH 1025. Pista en servicio 23. Notifique listo rodar.",
++    "EC-DOG, autorizado a rodar punto de espera pista 23.",
+     "EC-DOG, autorizado a rodar punto de espera pista 23, via calle C, calle A.",
+     "EC-DOG, ruede punto de espera A.",
++    "EC-DOG, mantenga posición.",
+     "EC-DOG, mantenga posición, tráfico en final.",
++    "EC-DOG, autorizado a entrar cabecera 23.",
++    "EC-DOG, autorizado a entrar y backtrack pista 23.",
+     "EC-DOG, autorizado a entrar y backtrack pista 23, notifique listo.",
++    "EC-DOG, mantenga posición.",
++    "EC-DOG, autorizado a despegar pista 23, viento 24010KT.",
+     "EC-DOG, autorizado a despegar pista 23, viento 24010KT, aprobado viraje izquierda, notifique alcanzando punto S1.",
++    "EC-DOG, autorizado a despegar pista 23, viento 24010KT, notifique punto S1.",
++    "EC-DOG, autorizado a despegar pista 23, viento 24010KT, notifique punto S1. Me confirma intenciones.",
++    "EC-DOG, recibido.",
++    "EC-DOG, recibido. Sin tráfico notificado en la zona.",
+     "EC-DOG, recibido, continúe ascenso para 5500 ft.",
+     "EC-DOG, copiado, notifique abandonando zona o CTA.",
++    "EC-DOG, recibido, notifique 25 millas fuera.",
++    "Buenas de nuevo. EC-DOG. Adelante.",
+     "EC-DOG, recibido, espere la pista en servicio 23, viento 24010KT BKN035 19/09 Q1024. Notifique alcanzando o próximo o sobre punto S1.",
+-    "EC-DOG, a la vista, autorizado a aterrizar pista 23, viento 25010KT. Abandone por calle B."
++    "EC-DOG, recibido, mantenga posición, le aviso para regresar al campo.",
++    "EC-DOG, proceda para el campo, notifique o llame con campo a la vista.",
++    "EC-DOG, entre en circuito de tráfico, notifique en viento en cola izquierda pista 23.",
++    "ECDOG, proceda para base izquierda pista 23.",
++    "EC-DOG, recibido. Extienda o prolongue viento en cola izquierda pista 23. Le aviso para virar.",
++    "EC-DOG, llame en base pista 23.",
++    "EC-DOG, a la vista, autorizado a aterrizar pista 23, viento 25010KT.",
++    "EC-DOG, autorizado a aterrizar pista 23, viento 25010KT. Abandone por calle B.",
++    "Recibido, continúe rodaje a plataforma militar. EC-DOG."
+   ];
+ 
+   /* Alfabeto fonético OACI completo (con variantes habituales en dictado). */
+@@ -537,6 +567,11 @@
+       var t = toks[j];
+       if (t === "mil") {
+         if (vioMil || actual >= 1000) break;
++        /* «mil cero uno tres» (QNH dicho a medias en cifras) = 1013: «mil» seguido de exactamente tres dígitos sueltos. */
++        if (j === i && esDigitoSimple(toks[j + 1] || "") && esDigitoSimple(toks[j + 2] || "") &&
++            esDigitoSimple(toks[j + 3] || "") && !esDigitoSimple(toks[j + 4] || "") && toks[j + 4] !== "mil") {
++          return { valor: 1000 + parseInt(valorDigito(toks[j + 1]) + valorDigito(toks[j + 2]) + valorDigito(toks[j + 3]), 10), fin: j + 4 };
++        }
+         total = (actual || 1) * 1000; actual = 0; vioMil = true; ultimo = "mil"; usado = true; j++;
+         continue;
+       }
+@@ -1072,7 +1107,11 @@
+     re = /\b(?:buen[oa]s\s+(?:dias|tardes|noches)|buenas(?:\s+de\s+nuevo)?|hola)\b/g;
+     while ((m = re.exec(n)) !== null) marca(m.index, m.index + m[0].length, "saludo");
+     re = /\b(?:recibido|copiado|correcto|afirmativo|negativo|repito|gracias|hasta\s+luego|identificado|contacto\s+radar|le\s+tengo\s+a\s+la\s+vista|a\s+la\s+vista|le\s+veo|datos\s+del\s+campo|informacion\s+de(?:l)?\s+(?:trafico|campo))\b/g;
+-    while ((m = re.exec(n)) !== null) marca(m.index, m.index + m[0].length, "informacion");
++    while ((m = re.exec(n)) !== null) {
++      /* «llame con campo a la vista»: aquí «a la vista» es complemento de la instrucción, no un acuse */
++      if (/^a\s+la\s+vista$/.test(m[0]) && /\b(?:campo|aerodromo|aeropuerto|pista|trafico)\s+$/.test(n.slice(Math.max(0, m.index - 14), m.index))) continue;
++      marca(m.index, m.index + m[0].length, "informacion");
++    }
+ 
+     /* --- Autorizaciones e instrucciones (eco: se colacionan con su complemento) --- */
+     re = /\bpuesta\s+en\s+marcha(?:\s+(aprobada|autorizada|aprobado|autorizado))?\b/g;
+@@ -1309,6 +1348,21 @@
+       it.texto = (it.canon + (restoTexto ? " " + restoTexto : "")).trim();
+     });
+ 
++    /* Alternativas de la torre con el mismo sentido («extienda o prolongue…», «notifique o llame…»):
++       se colaciona una sola instrucción, con el primer verbo y el complemento común. */
++    var ecosOrden = items.filter(function (it) { return it.clase === "eco"; }).sort(function (a, b) { return a.ini - b.ini; });
++    for (var ia = 0; ia + 1 < ecosOrden.length; ia++) {
++      var ea = ecosOrden[ia], eb = ecosOrden[ia + 1];
++      if (ea.descartar || !(ea.tipo === eb.tipo || (ea.notificacion && eb.notificacion))) continue;
++      if (plano(n.slice(ea.finT, eb.ini)).replace(/[^a-z]+/g, " ").trim() !== "o") continue;
++      ea.fin = eb.fin;
++      ea.resto = eb.resto;
++      ea.texto = (ea.canon + (eb.resto ? " " + eb.resto : "")).trim();
++      if (eb.tipoExtra) ea.tipoExtra = eb.tipoExtra;
++      eb.descartar = true;
++    }
++    items = items.filter(function (it) { return !it.descartar; });
++
+     /* Átomos absorbidos por el complemento de una instrucción eco */
+     items = items.filter(function (a) {
+       if (a.clase !== "atomo" || a.corta) return true;
+@@ -1372,6 +1426,21 @@
+     var n = base.n, disp = base.disp;
+     tramos.forEach(function (t) { n = blanquear(n, t.ini, t.fin); disp = blanquear(disp, t.ini, t.fin); });
+ 
++    /* Transmisión encadenada a varias aeronaves («IBERIA 3254, autorizado a despegar…, EC-DOG, mantenga posición»):
++       lo que va delante de nuestro indicativo, tras otro indicativo, es para la otra aeronave y no se aplica. */
++    var prefijo = n.slice(0, tramos[0].ini);
++    var mOtro = RE_OTRO_INDICATIVO.exec(prefijo);
++    if (mOtro && !tiene(NO_INDICATIVO_PREFIJO, mOtro[1] || "")) {
++      n = blanquear(n, 0, tramos[0].ini);
++      disp = blanquear(disp, 0, tramos[0].ini);
++      if (!/[a-z0-9]/.test(n)) {
++        return {
++          dirigidoAMi: false, reconocida: false, tipo: null, tipos: [], datos: datosVacios(), sugerencia: null,
++          motivo: "La instrucción va para otra aeronave; no queda nada dirigido a " + indicativo + " con seguridad."
++        };
++      }
++    }
++
+     var ex = extraerDatos(n, disp);
+     var det = detectar(n, disp, ex);
+     var datos = ex.datos;
+@@ -1453,7 +1522,9 @@
+   function leerLocal(clave) { try { return window.localStorage.getItem(clave); } catch (e) { return null; } }
+   function escribirLocal(clave, valor) { try { window.localStorage.setItem(clave, valor); return true; } catch (e) { return false; } }
+ 
+-  var indicativo = normalizarIndicativo(leerLocal(CLAVES.indicativo)) || INDICATIVO_DEFECTO;
++  /* Solo se acepta un indicativo guardado tal como lo guarda configurar() (ya normalizado); si está dañado, EC-DOG. */
++  var indicativoGuardado = leerLocal(CLAVES.indicativo);
++  var indicativo = (indicativoGuardado && normalizarIndicativo(indicativoGuardado) === indicativoGuardado) ? indicativoGuardado : INDICATIVO_DEFECTO;
+   var panel = cargarPanel();
+   var registro = cargarRegistro();
+   var indiceDemo = 0;
+@@ -1905,7 +1976,8 @@
+         if (vistos[i]) continue;
+         var r = ev.results[i];
+         var completo = r[0] && r[0].transcript ? r[0].transcript : "";
+-        var desde = consumidos[i] && completo.length >= consumidos[i] ? consumidos[i] : 0;
++        /* Si Safari revisa el texto y lo acorta tras un volcado por silencio, no se vuelve a procesar entero (evita duplicados). */
++        var desde = consumidos[i] ? Math.min(consumidos[i], completo.length) : 0;
+         var t = completo.slice(desde);
+         if (r.isFinal) {
+           vistos[i] = true;

@@ -1,0 +1,38 @@
+{
+  "name": "Colación ATC — ayuda de entrenamiento",
+  "short_name": "Colación ATC",
+  "description": "Recoge lo que dice la torre, extrae los datos y propone la colación (EC-DOG). Ayuda de entrenamiento no certificada.",
+  "lang": "es-ES",
+  "dir": "ltr",
+  "id": "./index.html",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#05070a",
+  "theme_color": "#05070a",
+  "categories": [
+    "education",
+    "utilities"
+  ],
+  "icons": [
+    {
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0AgMAAABAo+6hAAAACVBMVEULEiD/wjP19/rQAOKsAAAAeElEQVR42u3XsQ2DQBBE0QHpEnI34SoogYDph1IIranSiYWEZIvoAMP/8dt8ViIiukXF9oBGH6KL7f6jm80bNBp9Jv1Y3Fo3tkc0Go1Go9HVNfsEjT6r5vtH/6Om+nX53XwZTV9qk5fUJZOURGqTWXom086aiOr1BgllVM0yLFFsAAAAAElFTkSuQmCC",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADAAgMAAAAvsoSUAAAACVBMVEULEiD/wjP19/rQAOKsAAAAZUlEQVR42u3YMQqAMAxA0Tq4eCqP4JL7OfeULjqIVsSh0Pr+UAj07SEpSZIqFREBAL8HY0QsB9gHAACAm4bTn8swAwAAAAAAVAVWOAAAPgHnIqB/oHbKj3UK9Kop57X8tgEkddAGNyKaUDMNE5IAAAAASUVORK5CYII=",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAAIAAgMAAACJFjxpAAAACVBMVEULEiD/wjP19/rQAOKsAAABUElEQVR4Xu3cPQqEMBCAUZu9n00uuacUEV3YaSY/RND3dULU4XVGdFkkSZIkSZIkSZIkSZIkSWruU67W5ov0ZAACBAgQIECAAAECBAgQIECAAAECBAjMFvjti5ZjezMOEJYMzQAECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBCYLJB4Ldq0JF3T1RNI6QxAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgEAs8U2vPzYTIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIEDg4QKh+Hp5cgYgQIAAAQIECBAgQIAAAQIECBAgQIDA7QKSJEnS0/sOrtpr8P0NQIAAAQIE6gUkSZL2zgfUU6P3uLreG/6fX50BCBAgIEmSJEmSJEmSJL2iDa6Lq6cBMJ07AAAAAElFTkSuQmCC",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

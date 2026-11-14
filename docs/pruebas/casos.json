@@ -1,0 +1,357 @@
+{
+  "indicativo_defecto": "EC-DOG",
+  "casos": [
+    {
+      "id": "C01",
+      "texto": "EC-DOG puesta en marcha aprobada, datos del campo: viento 250º 15 KT visibilidad + 10 Km., nubes SCT030 BKN050 17/09 QNH 1025. Pista en servicio 23. Notifique listo rodar.",
+      "dirigidoAMi": true,
+      "reconocida": true,
+      "tipo": "puesta_en_marcha",
+      "datos": {
+        "qnh": 1025,
+        "pista": "23",
+        "viento": {
+          "direccion": 250,
+          "velocidad": 15,
+          "unidad": "KT"
+        },
+        "visibilidad": "+ 10 Km",
+        "nubes": "SCT030 BKN050",
+        "temperatura": 17,
+        "rocio": 9
+      },
+      "colacion_contiene": [
+        "puesta en marcha aprobada",
+        "qnh 1025",
+        "pista 23",
+        "notificare listo rodar",
+        "ec-dog"
+      ],
+      "colacion_no_contiene": [],
+      "sugerencia_null": false,
+      "indicativo_al_final": true,
+      "notas": "Viento, visibilidad, nubes y temperatura van al panel, no son obligatorios en la colacion."
+    },
+    {
+      "id": "C02",
+      "texto": "EC-DOG, autorizado a rodar punto de espera pista 23, via calle C, calle A.",
+      "dirigidoAMi": true,
+      "reconocida": true,
+      "tipo": "rodaje",
+      "datos": {
+        "pista": "23",
+        "calles": [
+          "C",
+          "A"
+        ]
+      },
+      "colacion_contiene": [
+        "autorizado a rodar",
+        "punto de espera",
+        "pista 23",
+        "calle c",
+        "calle a",
+        "ec-dog"
+      ],
+      "colacion_no_contiene": [],
+      "sugerencia_null": false,
+      "indicativo_al_final": true
+    },
+    {
+      "id": "C03",
+      "texto": "EC-DOG, ruede punto de espera A.",
+      "dirigidoAMi": true,
+      "reconocida": true,
+      "tipo": "rodaje",
+      "datos": {
+        "punto": "A"
+      },
+      "colacion_contiene": [
+        "punto de espera a",
+        "ec-dog"
+      ],
+      "colacion_no_contiene": [],
+      "sugerencia_null": false,
+      "indicativo_al_final": true
+    },
+    {
+      "id": "C04",
+      "texto": "EC-DOG, mantenga posición, tráfico en final.",
+      "dirigidoAMi": true,
+      "reconocida": true,
+      "tipo": "mantenga_posicion",
+      "datos": {},
+      "colacion_contiene": [
+        "mantengo posicion",
+        "ec-dog"
+      ],
+      "colacion_no_contiene": [],
+      "sugerencia_null": false,
+      "indicativo_al_final": true
+    },
+    {
+      "id": "C05",
+      "texto": "EC-DOG, autorizado a entrar y backtrack pista 23, notifique listo.",
+      "dirigidoAMi": true,
+      "reconocida": true,
+      "tipo": "entrar_backtrack",
+      "datos": {
+        "pista": "23"
+      },
+      "colacion_contiene": [
+        "autorizado a entrar",
+        "backtrack",
+        "pista 23",
+        "notificare",
+        "ec-dog"
+      ],
+      "colacion_no_contiene": [],
+      "sugerencia_null": false,
+      "indicativo_al_final": true
+    },
+    {
+      "id": "C06",
+      "texto": "EC-DOG, autorizado a despegar pista 23, viento 24010KT, aprobado viraje izquierda, notifique alcanzando punto S1.",
+      "dirigidoAMi": true,
+      "reconocida": true,
+      "tipo": "despegue",
+      "datos": {
+        "pista": "23",
+        "viento": {
+          "direccion": 240,
+          "velocidad": 10,
+          "unidad": "KT"
+        },
+        "viraje": "izquierda",
+        "punto": "S1"
+      },
+      "colacion_contiene": [
+        "autorizado a despegar",
+        "pista 23",
+        "viraje izquierda",
+        "punto s1",
+        "ec-dog"
+      ],
+      "colacion_no_contiene": [],
+      "sugerencia_null": false,
+      "indicativo_al_final": true,
+      "notas": "El viento se extrae al panel; no es obligatorio en la colacion."
+    },
+    {
+      "id": "C07",
+      "texto": "EC-DOG, recibido, continúe ascenso para 5500 ft.",
+      "dirigidoAMi": true,
+      "reconocida": true,
+      "tipo": "ascenso",
+      "datos": {
+        "altitud": "5500 ft"
+      },
+      "colacion_contiene": [
+        "5500",
+        "ec-dog"
+      ],
+      "colacion_no_contiene": [],
+      "sugerencia_null": false,
+      "indicativo_al_final": true
+    },
+    {
+      "id": "C08",
+      "texto": "EC-DOG, copiado, notifique abandonando zona o CTA.",
+      "dirigidoAMi": true,
+      "reconocida": true,
+      "tipo_en_tipos": "notifique",
+      "datos": {},
+      "colacion_contiene": [
+        "notificare abandonando zona o cta",
+        "ec-dog"
+      ],
+      "colacion_no_contiene": [],
+      "sugerencia_null": false,
+      "indicativo_al_final": true
+    },
+    {
+      "id": "C09",
+      "texto": "EC-DOG, recibido, espere la pista en servicio 23, viento 24010KT BKN035 19/09 Q1024. Notifique alcanzando o próximo o sobre punto S1.",
+      "dirigidoAMi": true,
+      "reconocida": true,
+      "tipo": "pista_en_servicio",
+      "datos": {
+        "pista": "23",
+        "qnh": 1024,
+        "viento": {
+          "direccion": 240,
+          "velocidad": 10,
+          "unidad": "KT"
+        },
+        "nubes": "BKN035",
+        "temperatura": 19,
+        "rocio": 9,
+        "punto": "S1"
+      },
+      "colacion_contiene": [
+        "pista 23",
+        "qnh 1024",
+        "punto s1",
+        "ec-dog"
+      ],
+      "colacion_no_contiene": [],
+      "sugerencia_null": false,
+      "indicativo_al_final": true
+    },
+    {
+      "id": "C10",
+      "texto": "EC-DOG, a la vista, autorizado a aterrizar pista 23, viento 25010KT. Abandone por calle B.",
+      "dirigidoAMi": true,
+      "reconocida": true,
+      "tipo": "aterrizaje",
+      "datos": {
+        "pista": "23",
+        "viento": {
+          "direccion": 250,
+          "velocidad": 10,
+          "unidad": "KT"
+        },
+        "calles": [
+          "B"
+        ]
+      },
+      "colacion_contiene": [
+        "autorizado a aterrizar",
+        "pista 23",
+        "calle b",
+        "ec-dog"
+      ],
+      "colacion_no_contiene": [],
+      "sugerencia_null": false,
+      "indicativo_al_final": true
+    },
+    {
+      "id": "C11",
+      "texto": "IBERIA 3254, autorizado a despegar pista 23.",
+      "dirigidoAMi": false,
+      "reconocida": false,
+      "sugerencia_null": true,
+      "no_actualiza_panel": true,
+      "datos": {},
+      "colacion_contiene": [],
+      "colacion_no_contiene": []
+    },
+    {
+      "id": "C12",
+      "texto": "EC-DOG, realice procedimiento invertido delta.",
+      "dirigidoAMi": true,
+      "reconocida": false,
+      "sugerencia_null": false,
+      "colacion_contiene": [
+        "repita, ec-dog"
+      ],
+      "colacion_no_contiene": [],
+      "datos": {},
+      "sin_datos_inventados": true,
+      "indicativo_al_final": true
+    },
+    {
+      "id": "C13",
+      "texto": "Echo Charlie Delta Oscar Golf, mantenga posición.",
+      "dirigidoAMi": true,
+      "reconocida": true,
+      "tipo": "mantenga_posicion",
+      "datos": {},
+      "colacion_contiene": [
+        "mantengo posicion",
+        "ec-dog"
+      ],
+      "colacion_no_contiene": [],
+      "sugerencia_null": false,
+      "indicativo_al_final": true
+    },
+    {
+      "id": "C14",
+      "texto": "Delta Oscar Golf, autorizado a despegar pista 23, viento 24010KT.",
+      "dirigidoAMi": true,
+      "reconocida": true,
+      "tipo": "despegue",
+      "datos": {
+        "pista": "23",
+        "viento": {
+          "direccion": 240,
+          "velocidad": 10,
+          "unidad": "KT"
+        }
+      },
+      "colacion_contiene": [
+        "autorizado a despegar",
+        "pista 23",
+        "ec-dog"
+      ],
+      "colacion_no_contiene": [],
+      "sugerencia_null": false,
+      "indicativo_al_final": true
+    },
+    {
+      "id": "C15",
+      "texto": "EC-DOG, transpondedor 7000, pase a frecuencia 118.455.",
+      "dirigidoAMi": true,
+      "reconocida": true,
+      "tipo_en_tipos_alguno": [
+        "transpondedor",
+        "cambio_frecuencia"
+      ],
+      "datos": {
+        "squawk": "7000",
+        "frecuencia": "118.455"
+      },
+      "colacion_contiene": [
+        "7000",
+        "118.455",
+        "ec-dog"
+      ],
+      "colacion_no_contiene": [],
+      "sugerencia_null": false,
+      "indicativo_al_final": true
+    },
+    {
+      "id": "C16",
+      "texto": "Buenos días, EC-DOG. Adelante.",
+      "dirigidoAMi": true,
+      "reconocida": true,
+      "tipo": "contacto",
+      "sugerencia_null": true,
+      "datos": {},
+      "colacion_contiene": [],
+      "colacion_no_contiene": []
+    },
+    {
+      "id": "C17",
+      "texto": "EC-DOG puesta en marcha aprobada, QNH uno cero dos cinco, pista dos tres.",
+      "dirigidoAMi": true,
+      "reconocida": true,
+      "tipo": "puesta_en_marcha",
+      "datos": {
+        "qnh": 1025,
+        "pista": "23"
+      },
+      "colacion_contiene": [
+        "puesta en marcha aprobada",
+        "qnh 1025",
+        "pista 23",
+        "ec-dog"
+      ],
+      "colacion_no_contiene": [],
+      "sugerencia_null": false,
+      "indicativo_al_final": true
+    },
+    {
+      "id": "C18",
+      "secuencia": [
+        "C01",
+        "C09"
+      ],
+      "obtenerDatos": {
+        "qnh": 1024,
+        "pista": "23"
+      },
+      "notas": "El ultimo QNH (1024) sustituye al de C01 (1025). La pista 23 se mantiene."
+    }
+  ]
+}
